@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Мой каталог</title>
+    <style>
+        .product { border:1px solid #ccc; padding:10px; margin:10px; width:200px; }
+        .product img { max-width:100%; height:auto; }
+        .container { display:flex; flex-wrap:wrap; }
+    </style>
+</head>
+<body>
+    <h1>Каталог оборудования</h1>
+    <div class="container" id="catalog"></div>
+    <script>
+        fetch('catalog.json')
+            .then(r => r.json())
+            .then(data => {
+                const container = document.getElementById('catalog');
+                // Фильтруем только настоящие товары (например, по наличию изображения)
+                const products = data.filter(p => p.image && p.image.includes('small_item'));
+                products.forEach(p => {
+                    const div = document.createElement('div');
+                    div.className = 'product';
+                    div.innerHTML = `
+                        <img src="${p.image}" alt="${p.name}" onerror="this.style.display='none'">
+                        <h3>${p.name}</h3>
+                        <p>${p.category}</p>
+                    `;
+                    container.appendChild(div);
+                });
+            });
+    </script>
+</body>
+</html>
