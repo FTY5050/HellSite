@@ -1,0 +1,20 @@
+# Python
+venv/
+__pycache__/
+*.py[cod]
+.Python
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs and temp
+*.log
+logg.txt
+
+# Dev / build (optional; _dev already holds copies)
+# catalog_clean.json
+# tree.txt
+_dev/sample_bikzg.html
+_dev/venv/
+_dev/scraped_products.json

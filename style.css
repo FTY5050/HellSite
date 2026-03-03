@@ -298,6 +298,16 @@ h1 span { display: block; color: var(--red); }
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     z-index: 1000; transition: all 0.3s ease;
 }
+
+/* Отступы контента от шапки и подвала на всех страницах */
+body > nav.industrial-header-light + section { padding-top: 80px; }
+body > section:last-of-type { padding-bottom: 4rem; }
+.page-content {
+    padding-top: 80px;
+    padding-bottom: 4rem;
+}
+.main-footer { margin-top: 0; }
+
 .header-inner {
     display: flex; justify-content: space-between; align-items: center;
     padding: 12px 40px; max-width: 1700px; margin: 0 auto;
@@ -322,6 +332,26 @@ h1 span { display: block; color: var(--red); }
     box-shadow: 4px 4px 0 rgba(211, 47, 47, 0.2); transition: 0.3s;
 }
 .h-btn:hover { transform: translateY(-2px); box-shadow: 6px 6px 0 rgba(211, 47, 47, 0.3); }
+
+/* Кнопка «Заказать» в карточках каталога — красная */
+.btn-order {
+    background: var(--red);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 4px 4px 0 rgba(211, 47, 47, 0.25);
+}
+.btn-order:hover {
+    transform: translateY(-2px);
+    box-shadow: 6px 6px 0 rgba(211, 47, 47, 0.35);
+    background: #b71c1c;
+}
 
 /* --- 9. УСЛУГИ И ГАЛЕРЕЯ --- */
 .services-section {
@@ -484,6 +514,14 @@ h1 span { display: block; color: var(--red); }
 }
 .prod-links a:hover { background: #D32F2F; color: #fff; }
 
+/* Карточки каталога: характеристики (таблица или список с bikzg.ru) */
+.product-price { font-size: 0.9rem; color: #666; margin-bottom: 0.5rem; }
+.product-props { font-size: 0.85rem; color: #444; margin: 0.5rem 0 1rem; }
+.product-props table { width: 100%; border-collapse: collapse; }
+.product-props td { padding: 2px 4px; vertical-align: top; }
+.product-props--list .product-props__title { display: block; font-weight: 700; margin-bottom: 0.35rem; color: #333; }
+.product-props--list ul { margin: 0; padding-left: 1.1rem; }
+
 /* --- 11. CTA БЛОК --- */
 .cta-industrial-full {
     width: 100vw;
@@ -606,22 +644,21 @@ h1 span { display: block; color: var(--red); }
 .modal-form-content input, 
 .modal-form-content textarea {
     width: 100%;
-    background: transparent !important; /* Убираем белый фон */
-    border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 12px 0;
-    color: #fff !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 12px 14px;
+    color: #1a1a1b !important;
     font-family: 'Inter', sans-serif;
     font-size: 14px;
     outline: none;
-    border-radius: 0 !important;
-    -webkit-appearance: none; /* Убирает тени в Safari/Chrome */
+    border-radius: 6px !important;
+    -webkit-appearance: none;
 }
 
 /* Плейсхолдеры (ВАШЕ ИМЯ и т.д.) */
 .modal-form-content input::placeholder, 
 .modal-form-content textarea::placeholder {
-    color: #666;
+    color: #888;
     text-transform: uppercase;
     font-size: 12px;
     letter-spacing: 1px;
@@ -802,7 +839,7 @@ h1 span { display: block; color: var(--red); }
     justify-content: space-between;
     
     /* Указываем путь явно. Если не сработает, попробуй url('./back.jpg') */
-    background-image: url('back.jpg') !important;
+    background-image: url('assets/images/back.jpg') !important;
     background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
@@ -1367,7 +1404,7 @@ h1 span { display: block; color: var(--red); }
 .about-hero-new {
     width: 100%;
     height: 450px; /* Уменьшили высоту */
-    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('new_back.png');
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('assets/images/new_back.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

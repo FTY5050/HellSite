@@ -1,0 +1,28 @@
+/* Template base styles - stub (replaces template9/11/31/style.css) */
+body { font-family: Arial, sans-serif; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+
+/* Кнопка «Заказать» в каталоге — красная (подключается по /assets/ на всех страницах) */
+#catalog-container .btn-order,
+.catalog-container .btn-order,
+.prod-info .btn-order {
+    background: #D32F2F !important;
+    color: #fff !important;
+    border: none !important;
+    padding: 10px 20px !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    cursor: pointer !important;
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s !important;
+    box-shadow: 4px 4px 0 rgba(211, 47, 47, 0.25) !important;
+}
+#catalog-container .btn-order:hover,
+.catalog-container .btn-order:hover,
+.prod-info .btn-order:hover {
+    background: #b71c1c !important;
+    color: #fff !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 6px 6px 0 rgba(211, 47, 47, 0.35) !important;
+}

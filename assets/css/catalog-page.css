@@ -1,0 +1,248 @@
+/**
+ * Стили страницы «Продукция» (каталог): шапка, разделы, сетка карточек.
+ */
+
+/* ----- Обёртка страницы каталога ----- */
+.catalog-page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px 4rem;
+}
+
+/* ----- Шапка раздела: заголовок и подзаголовок ----- */
+.catalog-page__header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.catalog-page__title {
+  font-family: 'Montserrat', 'Open Sans', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: #1a1a1b;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.catalog-page__subtitle {
+  font-size: 1.0625rem;
+  color: #666;
+  margin: 0;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ----- Блок «Разделы каталога» ----- */
+.catalog-sections {
+  margin-bottom: 2.5rem;
+}
+
+.catalog-sections__title {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #888;
+  margin: 0 0 1rem;
+}
+
+.catalog-sections__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.catalog-sections__list a {
+  display: block;
+  padding: 14px 18px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #1a1a1b;
+  text-decoration: none;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  transition: border-color 0.2s, background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.catalog-sections__list a:hover {
+  border-color: #D32F2F;
+  background: #fff5f5;
+  color: #b71c1c;
+  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.12);
+}
+
+/* ----- Сетка карточек товаров (главная каталога и подстраницы) ----- */
+.catalog-page .catalog-container,
+.page-content .catalog-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  max-width: none;
+}
+
+.catalog-page .prod-card,
+.page-content .prod-card {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+
+.catalog-page .prod-card:hover,
+.page-content .prod-card:hover {
+  border-color: rgba(211, 47, 47, 0.35);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.catalog-page .prod-img,
+.page-content .prod-img {
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: linear-gradient(180deg, #fafafa 0%, #f0f0f0 100%);
+}
+
+.catalog-page .prod-img img,
+.page-content .prod-img img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.catalog-page .prod-info,
+.page-content .prod-info {
+  padding: 20px;
+  border-top: 1px solid #f0f0f0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.catalog-page .prod-info h4,
+.page-content .prod-info h4 {
+  margin: 0 0 10px;
+  font-family: 'Montserrat', 'Open Sans', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 800;
+  line-height: 1.3;
+  color: #1a1a1b;
+  text-transform: none;
+  letter-spacing: -0.01em;
+}
+
+.catalog-page .product-price,
+.page-content .product-price {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #D32F2F;
+  margin-bottom: 12px;
+}
+
+.catalog-page .product-props,
+.page-content .product-props {
+  font-size: 0.8125rem;
+  color: #555;
+  margin: 0 0 1rem;
+  flex-grow: 1;
+}
+
+.catalog-page .product-props table,
+.page-content .product-props table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.catalog-page .product-props td,
+.page-content .product-props td {
+  padding: 3px 0;
+  vertical-align: top;
+}
+
+.catalog-page .product-props td:first-child,
+.page-content .product-props td:first-child {
+  color: #777;
+  padding-right: 8px;
+}
+
+.catalog-page .product-props--list .product-props__title,
+.page-content .product-props--list .product-props__title {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+  color: #333;
+  font-size: 0.8125rem;
+}
+
+.catalog-page .product-props--list ul,
+.page-content .product-props--list ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.catalog-page .prod-actions,
+.page-content .prod-actions {
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+/* Заголовок на подстраницах каталога (без .catalog-page) */
+.page-content .shop-content__title.main-title {
+  font-family: 'Montserrat', 'Open Sans', sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: #1a1a1b;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+/* Адаптив */
+@media (max-width: 900px) {
+  .catalog-page .catalog-container,
+  .page-content .catalog-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .catalog-sections__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .catalog-page {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .catalog-page .catalog-container,
+  .page-content .catalog-container {
+    grid-template-columns: 1fr;
+  }
+
+  .catalog-sections__list {
+    grid-template-columns: 1fr;
+  }
+
+  .catalog-page .prod-img,
+  .page-content .prod-img {
+    height: 200px;
+  }
+}

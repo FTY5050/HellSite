@@ -1,0 +1,231 @@
+/* Корзина заявок — виджет в шапке */
+.cart-widget-wrap {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 12px;
+}
+
+.cart-widget {
+  position: relative;
+}
+
+.cart-widget__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.cart-widget__trigger:hover {
+  background: #f5f5f5;
+  border-color: rgba(0, 0, 0, 0.25);
+}
+
+.cart-widget__icon {
+  font-size: 1.25rem;
+}
+
+.cart-widget__badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 18px;
+  color: #fff;
+  text-align: center;
+  background: #c00;
+  border-radius: 9px;
+  box-sizing: border-box;
+}
+
+.cart-widget__dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 1000;
+  width: 320px;
+  max-height: 70vh;
+  margin-top: 8px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+}
+
+.cart-widget__dropdown.cart-widget__dropdown--open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.cart-widget__header {
+  padding: 12px 16px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #333;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-widget__list {
+  max-height: 240px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 8px 0;
+  list-style: none;
+}
+
+.cart-widget__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 16px;
+  font-size: 0.8125rem;
+  transition: background 0.15s;
+}
+
+.cart-widget__item:hover {
+  background: #f9f9f9;
+}
+
+.cart-widget__item-title {
+  flex: 1;
+  min-width: 0;
+  color: #333;
+  word-break: break-word;
+}
+
+.cart-widget__remove {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  font-size: 1.25rem;
+  line-height: 1;
+  color: #999;
+  background: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+}
+
+.cart-widget__remove:hover {
+  color: #c00;
+  background: #fee;
+}
+
+.cart-widget__empty {
+  margin: 0;
+  padding: 20px 16px;
+  font-size: 0.875rem;
+  color: #888;
+  text-align: center;
+}
+
+.cart-widget__submit {
+  width: calc(100% - 24px);
+  margin: 8px 12px 12px;
+  padding: 10px 16px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fff;
+  background: #1a1a1b;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cart-widget__submit:hover {
+  background: #333;
+}
+
+/* Кнопка «В заявку» на карточках */
+.btn-add-to-cart {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  font-size: 0.8125rem;
+  color: #fff;
+  background: #c00;
+  border: 1px solid #a00;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.btn-add-to-cart:hover {
+  background: #b00;
+  border-color: #900;
+}
+
+.prod-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.prod-info .btn-order + .btn-add-to-cart,
+.prod-info .btn-add-to-cart + .btn-order {
+  margin-left: 0;
+}
+
+/* Тосты */
+.cart-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  z-index: 9999;
+  padding: 12px 20px;
+  font-size: 0.875rem;
+  color: #fff;
+  background: #1a1a1b;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transform: translateX(-50%) translateY(0);
+  animation: cartToastIn 0.3s ease;
+}
+
+.cart-toast--hide {
+  animation: cartToastOut 0.3s ease forwards;
+}
+
+@keyframes cartToastIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes cartToastOut {
+  from {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+}

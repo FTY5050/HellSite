@@ -6,7 +6,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Водоподготовительное оборудование | НПП «КПК»</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&amp;family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"/>
-<link href="style.css" rel="stylesheet"/>
+<link href="../style.css" rel="stylesheet"/>
 <style>
         /* --- Общие сбросы и базовые стили --- */
         body {
@@ -261,8 +261,8 @@
 </head>
 <body><nav class="industrial-header-light">
 <div class="header-inner">
-<a class="header-logo" href="/">
-<img alt="НПП КПК" class="nav-logo-img" src="logo2.png"/>
+<a class="header-logo" href="../index.html">
+<img alt="НПП КПК" class="nav-logo-img" src="../logo2.png"/>
 </a>
 <ul class="header-links">
 <li><a href="#about">О ПРЕДПРИЯТИИ</a></li>
@@ -289,7 +289,7 @@
 <div class="footer-container">
 <div class="footer-col about">
 <div class="second-logo-area">
-<img alt="НПП КПК Дополнительный" src="logo2.png" style="height: 155px; width: auto; opacity: 0.8;"/>
+<img alt="НПП КПК Дополнительный" src="../logo2.png" style="height: 155px; width: auto; opacity: 0.8;"/>
 </div>
 </div>
 <div class="footer-col">
@@ -332,5 +332,72 @@
 <a class="policy" href="#">Политика конфиденциальности</a>
 </div>
 </div>
-</footer></body>
+</footer>
+<div class="modal-overlay" id="contact-modal">
+<div class="modal-box">
+<button class="close-modal-btn">×</button>
+<div class="modal-body">
+<h3 class="modal-title">ОСТАВИТЬ ЗАЯВКУ</h3>
+<p class="modal-subtitle">Специалист свяжется с вами</p>
+<form class="modal-form-content" id="modal-form">
+<div class="input-group"><input placeholder="ВАШЕ ИМЯ" required="" type="text"/></div>
+<div class="input-group"><input placeholder="ТЕЛЕФОН" required="" type="tel"/></div>
+<div class="input-group"><input placeholder="EMAIL" type="email"/></div>
+<div class="input-group"><textarea placeholder="ВАШ ВОПРОС" rows="3"></textarea></div>
+<button class="btn-yellow-full" type="submit">ОТПРАВИТЬ</button>
+</form>
+</div>
+</div>
+</div>
+
+<div class="modal-overlay" id="item-desc-modal" style="display: none;">
+<div class="modal-box" style="max-width: 600px;">
+<button class="close-modal-btn">×</button>
+<div class="modal-body">
+<h3 class="modal-title" id="desc-modal-title"></h3>
+<div class="modal-price" id="desc-modal-price"></div>
+<div class="modal-props" id="desc-modal-props"></div>
+<div class="modal-description" id="desc-modal-description"></div>
+</div>
+</div>
+</div>
+
+<script>
+(function() {
+    const modal = document.getElementById('item-desc-modal');
+    if (!modal) return;
+    const closeBtn = modal.querySelector('.close-modal-btn');
+    const titleEl = document.getElementById('desc-modal-title');
+    const priceEl = document.getElementById('desc-modal-price');
+    const propsEl = document.getElementById('desc-modal-props');
+    const descEl = document.getElementById('desc-modal-description');
+
+    document.querySelectorAll('.btn-details').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            titleEl.textContent = this.dataset.itemTitle;
+            priceEl.innerHTML = 'Цена: по запросу';
+            propsEl.innerHTML = this.dataset.itemProps || '';
+            descEl.innerHTML = this.dataset.itemDesc || 'Нет описания';
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    if (closeBtn) {
+        closeBtn.onclick = function() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        };
+    }
+
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    };
+})();
+</script>
+</body>
 </html>

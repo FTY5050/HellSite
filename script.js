@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 modal.style.flexDirection = "column";
                 
                 modalImg.src = img.src;
-                captionText.innerHTML = title ? title.innerHTML : "";
+                captionText.textContent = title ? title.textContent : "";
                 document.body.style.overflow = 'hidden';
             });
         });
@@ -264,7 +264,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // 5. Закрытие
-    document.querySelector('.close-modal').onclick = () => {
+    const closeModalBtn = document.querySelector('.close-modal');
+    if (closeModalBtn) closeModalBtn.onclick = () => {
         modal.style.display = "none";
     };
 
@@ -278,27 +279,46 @@ const contactModal = document.getElementById('contact-modal');
 const openButtons = document.querySelectorAll('.open-modal-trigger');
 const closeBtn = document.querySelector('.close-modal-btn');
 
-// Открытие
-openButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-        contactModal.style.display = 'flex'; // Сначала показываем блок
-        setTimeout(() => {
-            contactModal.classList.add('active'); // Затем включаем анимацию
-        }, 10);
+if (contactModal) {
+  openButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const product = btn.getAttribute('data-item-title');
+      const form = document.getElementById('modal-form');
+      if (form && product) {
+        const ta = form.querySelector('textarea');
+        if (ta) ta.value = 'Заказ: ' + product;
+      }
+      contactModal.style.display = 'flex';
+      setTimeout(() => contactModal.classList.add('active'), 10);
     });
-});
+  });
 
-// Закрытие
-const closeModal = () => {
-    contactModal.classList.remove('active'); // Убираем анимацию
-    setTimeout(() => {
-        contactModal.style.display = 'none'; // Скрываем блок после завершения анимации
-    }, 400); // 400мс — время из CSS transition
-};
-
-closeBtn.addEventListener('click', closeModal);
-
-// Закрытие по клику на фон
-contactModal.addEventListener('click', (e) => {
+  const closeModal = () => {
+    contactModal.classList.remove('active');
+    setTimeout(() => { contactModal.style.display = 'none'; }, 400);
+  };
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  contactModal.addEventListener('click', (e) => {
     if (e.target === contactModal) closeModal();
-});
+  });
+}
+
+// Отправка формы заявки на почту (mailto)
+const modalForm = document.getElementById('modal-form');
+if (modalForm) {
+    modalForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = (modalForm.querySelector('input[type="text"]') || {}).value || '';
+        const phone = (modalForm.querySelector('input[type="tel"]') || {}).value || '';
+        const email = (modalForm.querySelector('input[type="email"]') || {}).value || '';
+        const msg = (modalForm.querySelector('textarea') || {}).value || '';
+        const subject = 'Заявка с сайта НПП КПК';
+        const body = 'Имя: ' + name + '\nТелефон: ' + phone + '\nEmail: ' + email + '\n\nСообщение/заказ:\n' + msg;
+        window.location.href = 'mailto:info@nppkpk.ru?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        if (contactModal) {
+            contactModal.classList.remove('active');
+            setTimeout(() => { contactModal.style.display = 'none'; }, 400);
+        }
+    });
+}

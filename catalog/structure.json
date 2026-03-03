@@ -1,0 +1,18 @@
+{
+  "title": "Продукция",
+  "path": "/catalog/",
+  "sections": [
+    { "id": "avtomatika", "path": "avtomatika/", "title": "Автоматика" },
+    { "id": "cziklony", "path": "cziklony/", "title": "Циклоны" },
+    { "id": "ekonomajzery", "path": "ekonomajzery/", "title": "Экономайзеры" },
+    { "id": "filtruyushhie-elementy-fel", "path": "filtruyushhie-elementy-fel/", "title": "ФЭЛ, щелевые колпачки" },
+    { "id": "gorelki", "path": "gorelki/", "title": "Горелки" },
+    { "id": "kotly", "path": "kotly/", "title": "Паровые котлы" },
+    { "id": "tyagodutevye-mashiny", "path": "tyagodutevye-mashiny/", "title": "Тягодутьевые машины" },
+    { "id": "vodogrejnye-kotly", "path": "vodogrejnye-kotly/", "title": "Водогрейные котлы" },
+    { "id": "vodopodgotovka", "path": "vodopodgotovka/", "title": "Водоподготовка" },
+    { "id": "vozduxopodogrevateli", "path": "vozduxopodogrevateli/", "title": "Воздухоподогреватели" },
+    { "id": "zapchasti", "path": "zapchasti/", "title": "Запчасти" },
+    { "id": "zolouloviteli", "path": "zolouloviteli/", "title": "Золоуловители" }
+  ]
+}
