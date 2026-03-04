@@ -11,6 +11,11 @@ Thumbs.db
 # Logs and temp
 *.log
 logg.txt
+bikzg_fetch_*.log
+link_check_report.txt
+
+# IDE / editor
+.cursor/
 
 # Dev / build (if _dev is recreated)
 _dev/

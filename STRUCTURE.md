@@ -1,5 +1,7 @@
 # Структура проекта НПП «КПК»
 
+*Актуально: март 2025.*
+
 ## Корень сайта (публичные URL)
 
 В корне только необходимое для работы сайта:
@@ -11,7 +13,7 @@
 | `script.js`, `map-init.js` | Скрипты главной (галерея, карта и т.д.) |
 | `favicon.ico`, `logo2.png` | Иконка и логотип |
 | `robots.txt` | Правила для поисковиков |
-| `STRUCTURE.md`, `README.md`, `.gitignore` | Документация и игнор для git |
+| `STRUCTURE.md`, `README.md`, `SITEMAP.md`, `.gitignore` | Документация; SITEMAP — карта ссылок |
 
 ## Шапка и подвал (общие для всего сайта)
 
@@ -48,6 +50,9 @@
 | **assets/js/header-footer.js** | Подстановка шапки и подвала (генерируется из `assets/html/header.html` и `footer.html`) |
 | **assets/js/cart.js** | Виджет корзины в шапке |
 | **templates/** | Шаблоны стилей (template1, template8 и др.), подключаются относительными путями из каталога |
+| **images/** | Дополнительные изображения: заглушки каталога (`/images/safe-box.png`), галерея завода (`zavod/`), иконки и т.д. |
+
+**Вспомогательные каталоги в корне** (можно не коммитить или почистить, если не используются): `site/` (копии JS/логотипа), `modules/` (скрипты DaData/подсказок), `video/` (видеофайлы). Стили подсказок подключаются из `assets/css/vendor/suggestions.min.css`.
 
 ## Служебные скрипты (scripts/)
 
@@ -66,3 +71,7 @@
 - В страницах каталога: пустой `<div id="catalog-container"></div>`, блок `<script type="application/json" id="products-data">[...]</script>` и подключён `/assets/js/catalog-cards.js`. Карточки рисуются скриптом; описание из `description` показывается в модалке «Подробнее».
 - Сайт лучше открывать через веб-сервер (пути `/assets/`, `/upload/`, `/catalog/` от корня). Локально: из корня `python -m http.server 8000` или `npx serve`, затем http://localhost:8000 .
 - Не переименовывать и не перемещать папки `catalog/*`, `about`, `contacts`, `services`, `reference` без массовой замены путей в HTML.
+
+## Не коммитить (см. .gitignore)
+
+В репозиторий не попадают: кэш загрузки описаний (`.bikzg_fetch_cache.json`), логи (`*.log`, `bikzg_fetch_*.log`), отчёт проверки ссылок (`link_check_report.txt`), папка IDE (`.cursor`), `_dev/`, `venv/`.
