@@ -121,10 +121,36 @@
     if (submitBtn) submitBtn.onclick = openRequestModalWithCart;
   }
 
+  function closeContactModal() {
+    var modal = document.getElementById('contact-modal');
+    if (!modal) return;
+    modal.classList.remove('active');
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  function bindContactModalClose() {
+    var modal = document.getElementById('contact-modal');
+    if (!modal || modal.dataset.cartCloseBound) return;
+    modal.dataset.cartCloseBound = '1';
+    var closeBtn = modal.querySelector('.close-modal-btn');
+    if (closeBtn) closeBtn.addEventListener('click', closeContactModal);
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) closeContactModal();
+    });
+    document.addEventListener('keydown', function onEsc(e) {
+      if (e.key !== 'Escape') return;
+      if (modal.classList.contains('active') || modal.style.display === 'flex') {
+        closeContactModal();
+      }
+    });
+  }
+
   function openRequestModalWithCart() {
     var modal = document.getElementById('contact-modal');
     var form = document.getElementById('modal-form');
     if (!modal) return;
+    bindContactModalClose();
     var cart = getCart();
     var text = cart.length > 0
       ? 'Состав заказа (корзина):\n' + cart.map(function (i) { return '• ' + i.title; }).join('\n')

@@ -35,13 +35,8 @@
 - **assets/css/vendor/** — Стили, перенесённые с bikzg.ru: header.css, footer.css, template.css, suggestions.min.css, multiregion.css (заглушки). Подключаются как `/assets/css/vendor/...`.
 - **assets/js/catalog-cards.js** — Единый шаблон карточки товара: карточки в каталоге рендерятся из данных в `#products-data` на каждой странице.
 - **images/** — Дополнительные изображения (если используются отдельными разделами)
-- **templates/** — Шаблоны стилей (подключаются относительными путями из каталога)
-- **js/**, **site/**, **modules/**, **scripts/**, **video/** — Вспомогательные ресурсы
-
-## Служебные папки (не для публикации)
-
-- **_dev/** — Скрипты и данные: `build_catalog*.py`, `replace_bikzg_links.py`, `fetch_product_descriptions.py` (скачивание описаний/характеристик с bikzg.ru и вставка в HTML), `extract_cards_to_template.py` (замена статичных карточек на шаблон + JSON). Данные: catalog_*.json, scraped_products.json, tree.txt. Виртуальное окружение: _dev/venv (requests, beautifulsoup4).
-- **_drafts/** — Черновики и старые одностраничные версии. Навигация ведёт на актуальные разделы (../about/index.html и т.д.).
+- **templates/** — Шаблоны стилей (template1, template8; подключаются относительными путями из каталога)
+- **site/**, **modules/**, **scripts/**, **video/** — Вспомогательные ресурсы
 
 ## Важно для зависимостей
 

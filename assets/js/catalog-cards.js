@@ -5,6 +5,12 @@
  */
 (function () {
   'use strict';
+  var LOG = true; // логи в консоль; отключить: window.NPPKPK_CatalogDebug = false после загрузки
+  function log() {
+    if (LOG && (typeof window.NPPKPK_CatalogDebug === 'undefined' || window.NPPKPK_CatalogDebug)) {
+      console.log.apply(console, ['[NPPKPK catalog]'].concat(Array.prototype.slice.call(arguments)));
+    }
+  }
 
   function escapeHtml(s) {
     if (s == null) return '';
@@ -15,7 +21,7 @@
 
   /**
    * Рендер одной карточки.
-   * @param {Object} p - { title, img, alt?, price?, props?: [{ name, value }] }
+   * @param {Object} p - { title, img, alt?, price?, description?, props?: [{ name, value }] }
    * @returns {string} HTML
    */
   function renderCard(p) {
@@ -23,6 +29,7 @@
     var img = escapeHtml(p.img || '');
     var alt = escapeHtml(p.alt != null ? p.alt : p.title || '');
     var price = escapeHtml(p.price != null ? p.price : 'Цена: по запросу');
+    var description = (p.description != null && String(p.description).trim()) ? escapeHtml(String(p.description).trim()) : '';
 
     var propsHtml = '';
     if (p.props && p.props.length) {
@@ -55,6 +62,7 @@
           '<h4>' + title + '</h4>' +
           '<div class="product-price">' + price + '</div>' +
           propsHtml +
+          '<div class="product-description" style="display:none">' + description + '</div>' +
           '<div class="prod-actions">' +
           '<button type="button" class="btn-details">Подробнее</button>' +
           '<button type="button" class="btn-add-to-cart" data-item-title="' + alt + '">В корзину</button>' +
@@ -67,64 +75,117 @@
   function init() {
     var container = document.getElementById('catalog-container');
     var dataEl = document.getElementById('products-data');
-    if (!container || !dataEl) return;
+    log('init: container=', !!container, 'dataEl=', !!dataEl);
+    if (!container || !dataEl) {
+      log('init: выход (нет container или products-data)');
+      return;
+    }
 
     var json = dataEl.textContent || dataEl.innerText || '';
     var list;
     try {
       list = JSON.parse(json);
     } catch (e) {
+      log('init: ошибка парсинга JSON', e);
       return;
     }
-    if (!Array.isArray(list)) return;
+    if (!Array.isArray(list)) {
+      log('init: products-data не массив');
+      return;
+    }
 
     var html = '';
     for (var i = 0; i < list.length; i++) {
       html += renderCard(list[i]);
     }
     container.innerHTML = html;
+    var btnCount = container.querySelectorAll('.btn-details').length;
+    log('init: отрисовано карточек:', list.length, 'кнопок "Подробнее":', btnCount);
   }
 
-  /** Кнопка «Подробнее»: открывает модалку с данными из карточки (делегирование для динамических карточек) */
-  function initDetailsModal() {
+  /** Создаёт модалку «Подробнее», если её нет на странице */
+  function ensureDetailsModal() {
     var modal = document.getElementById('item-desc-modal');
-    if (!modal) return;
+    if (modal) {
+      log('ensureDetailsModal: модалка уже есть в DOM');
+      return modal;
+    }
+    log('ensureDetailsModal: создаю модалку');
+    var overlay = document.createElement('div');
+    overlay.id = 'item-desc-modal';
+    overlay.className = 'modal-overlay';
+    overlay.style.display = 'none';
+    overlay.setAttribute('aria-hidden', 'true');
+    overlay.innerHTML =
+      '<div class="modal-box" style="max-width: 600px;">' +
+        '<button type="button" class="close-modal-btn" aria-label="Закрыть">×</button>' +
+        '<div class="modal-body">' +
+          '<h3 class="modal-title" id="desc-modal-title"></h3>' +
+          '<div class="modal-price" id="desc-modal-price"></div>' +
+          '<div class="modal-description" id="desc-modal-description"></div>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(overlay);
+    log('ensureDetailsModal: модалка добавлена в body');
+    return overlay;
+  }
+
+  /** Кнопка «Подробнее»: открывает модалку с названием, ценой и описанием (делегирование) */
+  function initDetailsModal() {
+    var modal = ensureDetailsModal();
+    var titleNode = document.getElementById('desc-modal-title');
+    var priceNode = document.getElementById('desc-modal-price');
+    var descNode = document.getElementById('desc-modal-description');
+    log('initDetailsModal: modal=', !!modal, 'titleNode=', !!titleNode, 'priceNode=', !!priceNode, 'descNode=', !!descNode);
 
     document.body.addEventListener('click', function (e) {
       var btn = e.target.closest && e.target.closest('.btn-details');
       if (!btn) return;
+      log('click: клик по .btn-details', e.target);
       e.preventDefault();
+      e.stopPropagation();
       var card = btn.closest('.prod-card');
-      if (!card) return;
+      if (!card) {
+        log('click: не найден .prod-card');
+        return;
+      }
 
       var titleEl = card.querySelector('.prod-info h4');
       var priceEl = card.querySelector('.product-price');
-      var propsEl = card.querySelector('.product-props');
-
-      var titleNode = document.getElementById('desc-modal-title');
-      var priceNode = document.getElementById('desc-modal-price');
-      var propsNode = document.getElementById('desc-modal-props');
-      var descNode = document.getElementById('desc-modal-description');
+      var descEl = card.querySelector('.product-description');
+      var descText = descEl && descEl.textContent ? descEl.textContent.trim() : '';
 
       if (titleNode) titleNode.textContent = titleEl ? titleEl.textContent : '';
       if (priceNode) priceNode.innerHTML = priceEl ? priceEl.innerHTML : 'Цена: по запросу';
-      if (propsNode) propsNode.innerHTML = propsEl ? propsEl.outerHTML : '';
-      if (descNode) descNode.innerHTML = '';
+      if (descNode) {
+        descNode.style.display = '';
+        descNode.textContent = descText || 'Описание уточняйте у менеджера.';
+      }
+      var propsNode = document.getElementById('desc-modal-props');
+      if (propsNode) { propsNode.style.display = 'none'; propsNode.innerHTML = ''; }
 
+      log('click: показываю модалку, title=', titleNode ? titleNode.textContent : '');
       modal.style.display = 'flex';
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
     });
 
+    log('initDetailsModal: обработчик click на body повешен');
     var closeBtn = modal.querySelector('.close-modal-btn');
     if (closeBtn) {
       closeBtn.addEventListener('click', function () {
         modal.style.display = 'none';
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
       });
     }
     modal.addEventListener('click', function (e) {
       if (e.target === modal) {
         modal.style.display = 'none';
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
       }
     });
@@ -188,14 +249,21 @@
   }
 
   function run() {
+    log('run() старт, readyState=', document.readyState);
     init();
     initDetailsModal();
     initOrderModal();
+    log('run() конец');
   }
 
   if (document.readyState === 'loading') {
+    log('ждём DOMContentLoaded');
     document.addEventListener('DOMContentLoaded', run);
   } else {
     run();
+  }
+  window.NPPKPK_CatalogDebug = true;
+  if (typeof console !== 'undefined') {
+    console.log('[NPPKPK catalog] скрипт загружен. Логи с префиксом [NPPKPK catalog]. Отключить: NPPKPK_CatalogDebug = false');
   }
 })();

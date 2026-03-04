@@ -12,9 +12,8 @@ Thumbs.db
 *.log
 logg.txt
 
-# Dev / build (optional; _dev already holds copies)
-# catalog_clean.json
-# tree.txt
-_dev/sample_bikzg.html
-_dev/venv/
-_dev/scraped_products.json
+# Dev / build (if _dev is recreated)
+_dev/
+
+# Кэш скрипта загрузки описаний с bikzg
+.bikzg_fetch_cache.json
