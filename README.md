@@ -16,24 +16,39 @@ npx serve
 
 ## Структура
 
-- **index.html** — главная
-- **catalog/** — каталог (карточки рендерятся из одного шаблона `assets/js/catalog-cards.js` и данных на странице)
-- **about/**, **contacts/**, **services/**, **reference/**, **zakupki/** и др. — разделы
-- **assets/** — стили (css/vendor), скрипты (js), изображения (images)
+- **index.html** — главная (номенклатура, поиск по карточкам)
+- **catalog/** — каталог (карточки рендерятся из `assets/js/catalog-cards.js` и данных `#products-data` на каждой странице)
+- **about/**, **contacts/**, **services/**, **reference/**, **portfolio/**, **zakupki/** и др. — разделы
+- **assets/** — стили (css, в т.ч. vendor), скрипты (js), изображения (images), шапка/подвал (html)
 - **upload/** — фото товаров
+- **scripts/** — служебные скрипты (шапка/подвал, загрузка описаний с bikzg.ru)
 
 Подробно — в [STRUCTURE.md](STRUCTURE.md).
 
-## Служебные скрипты (_dev)
+## Служебные скрипты (scripts/)
 
-- Обновить описания/характеристики с bikzg.ru и вставить в страницы:
-  ```bash
-  _dev/venv/bin/python _dev/fetch_product_descriptions.py --fetch
-  _dev/venv/bin/python _dev/fetch_product_descriptions.py --apply
-  ```
-- Заменить статичные карточки на шаблон + JSON (уже выполнено):
-  ```bash
-  _dev/venv/bin/python _dev/extract_cards_to_template.py
-  ```
+### Шапка и подвал
 
-См. [_dev/README.md](_dev/README.md).
+После изменения `assets/html/header.html` или `assets/html/footer.html` пересоберите скрипт:
+
+```bash
+python3 scripts/build_header_footer_js.py
+```
+
+### Описания товаров с bikzg.ru
+
+Скрипт подставляет описания в каталог (поле `description` в `#products-data`); они отображаются в модалке «Подробнее».
+
+- **Терминал:** `python3 scripts/fetch_descriptions_bikzg.py` (опции: `--workers`, `--timeout`, `--no-cache`, `--log-fetch` и др.)
+- **GUI:** `python3 scripts/fetch_descriptions_bikzg_gui.py` — окно с прогрессом, полный лог пишется в файл
+
+Уже скачанные страницы кэшируются в `.bikzg_fetch_cache.json` (в корне проекта, в .gitignore). При Ctrl+C кэш сохраняется.
+
+Подробнее и все опции — в [scripts/README.md](scripts/README.md).
+
+## Документация
+
+- [STRUCTURE.md](STRUCTURE.md) — структура проекта и ресурсов
+- [scripts/README.md](scripts/README.md) — скрипты (шапка/подвал, загрузка описаний)
+- [ДЕЛА.md](ДЕЛА.md) — что доделать перед запуском
+- [SECURITY-AUDIT.md](SECURITY-AUDIT.md) — аудит безопасности
