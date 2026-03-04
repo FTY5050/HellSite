@@ -56,6 +56,7 @@
           '<div class="product-price">' + price + '</div>' +
           propsHtml +
           '<div class="prod-actions">' +
+          '<button type="button" class="btn-details">Подробнее</button>' +
           '<button type="button" class="btn-add-to-cart" data-item-title="' + alt + '">В корзину</button>' +
         '</div>' +
         '</div>' +
@@ -82,6 +83,51 @@
       html += renderCard(list[i]);
     }
     container.innerHTML = html;
+  }
+
+  /** Кнопка «Подробнее»: открывает модалку с данными из карточки (делегирование для динамических карточек) */
+  function initDetailsModal() {
+    var modal = document.getElementById('item-desc-modal');
+    if (!modal) return;
+
+    document.body.addEventListener('click', function (e) {
+      var btn = e.target.closest && e.target.closest('.btn-details');
+      if (!btn) return;
+      e.preventDefault();
+      var card = btn.closest('.prod-card');
+      if (!card) return;
+
+      var titleEl = card.querySelector('.prod-info h4');
+      var priceEl = card.querySelector('.product-price');
+      var propsEl = card.querySelector('.product-props');
+
+      var titleNode = document.getElementById('desc-modal-title');
+      var priceNode = document.getElementById('desc-modal-price');
+      var propsNode = document.getElementById('desc-modal-props');
+      var descNode = document.getElementById('desc-modal-description');
+
+      if (titleNode) titleNode.textContent = titleEl ? titleEl.textContent : '';
+      if (priceNode) priceNode.innerHTML = priceEl ? priceEl.innerHTML : 'Цена: по запросу';
+      if (propsNode) propsNode.innerHTML = propsEl ? propsEl.outerHTML : '';
+      if (descNode) descNode.innerHTML = '';
+
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    });
+
+    var closeBtn = modal.querySelector('.close-modal-btn');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function () {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+      });
+    }
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    });
   }
 
   /** Открытие модалки по кнопке «Связаться», отправка формы на почту */
@@ -143,6 +189,7 @@
 
   function run() {
     init();
+    initDetailsModal();
     initOrderModal();
   }
 

@@ -188,6 +188,26 @@
   margin-left: 0;
 }
 
+/* Кнопка «Подробнее» на карточках */
+.btn-details {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  font-size: 0.8125rem;
+  color: #1a1a1b;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.btn-details:hover {
+  border-color: #1a1a1b;
+  background: #f5f5f5;
+}
+
 /* Тосты */
 .cart-toast {
   position: fixed;
