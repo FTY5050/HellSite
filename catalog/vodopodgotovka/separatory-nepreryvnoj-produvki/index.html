@@ -22,6 +22,8 @@
 <link href="../../../assets/css/vendor/header.css" rel="stylesheet" type="text/css"/>
 <link href="../../../assets/css/vendor/footer.css" rel="stylesheet" type="text/css"/>
 <link href="../../../assets/css/vendor/multiregion.css" rel="stylesheet" type="text/css"/>
+<link href="../../../assets/css/cart.css" rel="stylesheet" type="text/css"/>
+<link href="../../../assets/css/catalog-page.css" rel="stylesheet" type="text/css"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap" rel="stylesheet"/>
@@ -47,34 +49,41 @@
 <body id="mp-pusher"><div id="site-header"></div>
 <script src="../../../assets/js/header-footer.js"></script><div class="page-content" style="padding-top: 80px;">
 <h1 class="shop-content__title h1 main-title" style="font-size: 2.5rem; margin-bottom: 30px;">Сепараторы непрерывной продувки</h1>
-<div class="product-detail">
-<div class="product-detail-img"><img alt="Сепаратор непрерывной продувки Ду300" src="../../../upload/shop_1/2/2/3/item_2239/small_item_2239.jpg"/></div>
-<h2 class="product-detail-title">Сепаратор непрерывной продувки Ду300</h2>
-<div class="product-price">Цена: по запросу</div>
-<div class="product-props"><table>
-<tr>
-<td style="white-space:nowrap">Давление, МПа:</td>
-<td>0.06</td>
-</tr>
-<tr>
-<td style="white-space:nowrap">Температура среды, °С:</td>
-<td>113</td>
-</tr>
-<tr>
-<td style="white-space:nowrap">Габаритные размеры (Высота, мм):</td>
-<td>2211</td>
-</tr>
-<tr>
-<td>Среда:</td>
-<td>пароводная смесь</td>
-</tr>
-<tr>
-<td style="white-space:nowrap">Масса, кг:</td>
-<td>150</td>
-</tr>
-</table></div>
-<button type="button" class="btn-add-to-cart" data-item-title="Сепаратор непрерывной продувки Ду300">В корзину</button>
-</div>
+<div class="catalog-container" id="catalog-container"></div>
+<script type="application/json" id="products-data">
+[
+  {
+    "title": "Сепаратор непрерывной продувки Ду300",
+    "img": "../../../upload/shop_1/2/2/3/item_2239/small_item_2239.jpg",
+    "alt": "Сепаратор непрерывной продувки Ду300",
+    "price": "Цена: по запросу",
+    "props": [
+      {
+        "name": "Давление, МПа:",
+        "value": "0.06"
+      },
+      {
+        "name": "Температура среды, °С:",
+        "value": "113"
+      },
+      {
+        "name": "Габаритные размеры (Высота, мм):",
+        "value": "2211"
+      },
+      {
+        "name": "Среда:",
+        "value": "пароводная смесь"
+      },
+      {
+        "name": "Масса, кг:",
+        "value": "150"
+      }
+    ],
+    "description": "Сепаратор непрерывной продувки Ду300 для пароводной смеси."
+  }
+]</script>
+<script src="../../../assets/js/catalog-cards.js"></script>
+<script src="../../../assets/js/cart.js"></script>
 </div>
 <div id="site-footer"></div>
 <div class="modal-overlay" id="contact-modal">

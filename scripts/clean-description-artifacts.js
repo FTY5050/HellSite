@@ -21,21 +21,15 @@ function cleanDescription(str) {
   s = s.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, '');
   // Двойное «Описание» в начале — оставить одно
   s = s.replace(/^Описание\s+Описание\s+/i, 'Описание ');
-  // Убрать завершающие &nbsp; и пробелы
-  s = s.replace(/(?:\s|&nbsp;)*$/, '');
-  // Убрать ведущие пробелы/&nbsp;
-  s = s.replace(/^(?:\s|&nbsp;)+/, '');
-  // Два и более подряд &nbsp;, пробела или перевода строки — один пробел
-  s = s.replace(/(?:&nbsp;|\s|\n|\r)+/g, ' ');
-  // Расшифровать типовые HTML-сущности в нормальные символы
-  s = s
-    .replace(/&laquo;/g, '«')
-    .replace(/&raquo;/g, '»')
-    .replace(/&ndash;/g, '–')
-    .replace(/&mdash;/g, '—')
-    .replace(/&divide;/g, '÷')
-    .replace(/&deg;/g, '°')
-    .replace(/&sup2;/g, '²');
+  // Заменить HTML-сущности на обычные символы (чтобы текст отображался без кодов)
+  s = s.replace(/&laquo;/g, '«').replace(/&raquo;/g, '»');
+  s = s.replace(/&nbsp;/g, ' ').replace(/&ndash;/g, '–').replace(/&mdash;/g, '—').replace(/&divide;/g, '÷');
+  // Убрать завершающие пробелы
+  s = s.replace(/\s+$/, '');
+  // Убрать ведущие пробелы
+  s = s.replace(/^\s+/, '');
+  // Два и более подряд пробела или перевода строки — один пробел
+  s = s.replace(/(?:\s|\n|\r)+/g, ' ');
   // UUID в середине текста (случайно попавший ID) — убрать
   s = s.replace(/\s[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}\s/g, ' ');
   // Снова схлопнуть пробелы и trim

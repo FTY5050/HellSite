@@ -36,7 +36,8 @@ def main():
     var path = (typeof location !== "undefined" && location.pathname) || "";
     var segments = path.split("/").filter(Boolean);
     if (segments.length <= 1) return "";
-    return "../".repeat(segments.length - 1);
+    var depth = (path.slice(-1) === "/") ? segments.length : segments.length - 1;
+    return "../".repeat(depth);
   }
   function applyBase(html) {
     var base = basePath();
