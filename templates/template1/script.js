@@ -917,7 +917,7 @@ jQuery(function($){
         '<div class="fancybox-bg"></div>' +
         '<div class="fancybox-inner">' +
         '<div class="fancybox-infobar">' +
-        "<span data-fancybox-index></span>&nbsp;/&nbsp;<span data-fancybox-count></span>" +
+        "<span data-fancybox-index></span> / <span data-fancybox-count></span>" +
         "</div>" +
         '<div class="fancybox-toolbar">{{buttons}}</div>' +
         '<div class="fancybox-stage"><div class="fancybox-navigation">{{arrows}}</div></div>' +
