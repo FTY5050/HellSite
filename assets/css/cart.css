@@ -30,7 +30,14 @@
 }
 
 .cart-widget__icon {
-  font-size: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+}
+
+.cart-widget__icon svg {
+  display: block;
 }
 
 .cart-widget__badge {
@@ -108,6 +115,12 @@
   min-width: 0;
   color: #333;
   word-break: break-word;
+}
+
+.cart-widget__qty {
+  color: #666;
+  font-size: 0.9em;
+  white-space: nowrap;
 }
 
 .cart-widget__remove {

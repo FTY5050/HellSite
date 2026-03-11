@@ -10,7 +10,11 @@
   function getCart() {
     try {
       var raw = localStorage.getItem(STORAGE_KEY);
-      return raw ? JSON.parse(raw) : [];
+      var items = raw ? JSON.parse(raw) : [];
+      return items.map(function (item) {
+        if (item.quantity == null) item.quantity = 1;
+        return item;
+      });
     } catch (e) {
       return [];
     }
@@ -27,8 +31,17 @@
 
   function addItem(title, url) {
     var cart = getCart();
-    var id = Date.now() + '-' + Math.random().toString(36).slice(2, 9);
-    cart.push({ id: id, title: title || 'Позиция', url: url || '' });
+    var t = (title || 'Позиция').trim();
+    var u = (url || '').trim();
+    var found = cart.find(function (item) {
+      return (item.title || '').trim() === t && (item.url || '').trim() === u;
+    });
+    if (found) {
+      found.quantity = (found.quantity || 1) + 1;
+    } else {
+      var id = Date.now() + '-' + Math.random().toString(36).slice(2, 9);
+      cart.push({ id: id, title: t, url: u, quantity: 1 });
+    }
     setCart(cart);
     return cart;
   }
@@ -44,16 +57,22 @@
     return [];
   }
 
+  function totalCount(cart) {
+    return cart.reduce(function (sum, item) { return sum + (item.quantity || 1); }, 0);
+  }
+
   function renderWidget() {
     var cart = getCart();
-    var count = cart.length;
+    var count = totalCount(cart);
     var countText = count > 0 ? count : '';
     var listHtml = '';
-    if (count > 0) {
+    if (cart.length > 0) {
       listHtml = '<ul class="cart-widget__list">';
       cart.forEach(function (item) {
+        var q = item.quantity || 1;
+        var titleDisplay = q > 1 ? escapeHtml(item.title) + ' <span class="cart-widget__qty">× ' + q + '</span>' : escapeHtml(item.title);
         listHtml += '<li class="cart-widget__item" data-id="' + item.id + '">';
-        listHtml += '<span class="cart-widget__item-title">' + escapeHtml(item.title) + '</span>';
+        listHtml += '<span class="cart-widget__item-title">' + titleDisplay + '</span>';
         listHtml += '<button type="button" class="cart-widget__remove" aria-label="Удалить">×</button>';
         listHtml += '</li>';
       });
@@ -65,7 +84,7 @@
     return (
       '<div class="cart-widget" id="request-cart-widget">' +
         '<button type="button" class="cart-widget__trigger" aria-label="Корзина">' +
-          '<span class="cart-widget__icon">📋</span>' +
+          '<span class="cart-widget__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></span>' +
           '<span class="cart-widget__badge">' + countText + '</span>' +
         '</button>' +
         '<div class="cart-widget__dropdown">' +
@@ -87,17 +106,20 @@
     var widget = document.getElementById('request-cart-widget');
     if (!widget) return;
     var cart = getCart();
+    var count = totalCount(cart);
     var badge = widget.querySelector('.cart-widget__badge');
     var dropdown = widget.querySelector('.cart-widget__dropdown');
-    if (badge) badge.textContent = cart.length > 0 ? cart.length : '';
+    if (badge) badge.textContent = count > 0 ? count : '';
     if (dropdown) {
       if (cart.length === 0) {
         dropdown.innerHTML = '<div class="cart-widget__header">Корзина</div><p class="cart-widget__empty">Корзина пуста</p>';
       } else {
         var listHtml = '<ul class="cart-widget__list">';
         cart.forEach(function (item) {
+          var q = item.quantity || 1;
+          var titleDisplay = q > 1 ? escapeHtml(item.title) + ' <span class="cart-widget__qty">× ' + q + '</span>' : escapeHtml(item.title);
           listHtml += '<li class="cart-widget__item" data-id="' + item.id + '">';
-          listHtml += '<span class="cart-widget__item-title">' + escapeHtml(item.title) + '</span>';
+          listHtml += '<span class="cart-widget__item-title">' + titleDisplay + '</span>';
           listHtml += '<button type="button" class="cart-widget__remove" aria-label="Удалить">×</button>';
           listHtml += '</li>';
         });
@@ -153,7 +175,10 @@
     bindContactModalClose();
     var cart = getCart();
     var text = cart.length > 0
-      ? 'Состав заказа (корзина):\n' + cart.map(function (i) { return '• ' + i.title; }).join('\n')
+      ? 'Состав заказа (корзина):\n' + cart.map(function (i) {
+          var q = i.quantity || 1;
+          return q > 1 ? '• ' + i.title + ' (' + q + ' шт)' : '• ' + i.title;
+        }).join('\n')
       : '';
     if (form) {
       var ta = form.querySelector('textarea');
@@ -206,7 +231,7 @@
       var widget = document.getElementById('request-cart-widget');
       if (widget) {
         var badge = widget.querySelector('.cart-widget__badge');
-        if (badge) badge.textContent = getCart().length;
+        if (badge) badge.textContent = totalCount(getCart());
       }
       var toast = document.createElement('div');
       toast.className = 'cart-toast';
