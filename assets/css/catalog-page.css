@@ -2,6 +2,34 @@
  * Стили страницы «Продукция» (каталог): шапка, разделы, сетка карточек.
  */
 
+/* ----- Хлебные крошки ----- */
+.breadcrumb {
+  font-size: 0.8125rem;
+  color: #666;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+}
+
+.breadcrumb a {
+  color: #1a1a1b;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: #D32F2F;
+  text-decoration: underline;
+}
+
+.breadcrumb-sep {
+  margin: 0 0.35rem;
+  color: #999;
+}
+
+.breadcrumb [aria-current="page"] {
+  color: #666;
+  font-weight: 600;
+}
+
 /* ----- Обёртка страницы каталога ----- */
 .catalog-page {
   max-width: 1280px;

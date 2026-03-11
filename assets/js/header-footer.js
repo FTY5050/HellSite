@@ -9,8 +9,9 @@
   function basePath() {
     var path = (typeof location !== "undefined" && location.pathname) || "";
     var segments = path.split("/").filter(Boolean);
-    if (segments.length <= 1) return "";
-    var depth = (path.slice(-1) === "/") ? segments.length : segments.length - 1;
+    if (segments.length === 0) return "";
+    if (segments.length === 1 && segments[0] === "index.html") return "";
+    var depth = (path.slice(-1) === "/") ? segments.length : (segments.length === 1 ? 1 : segments.length - 1);
     return "../".repeat(depth);
   }
   function applyBase(html) {
