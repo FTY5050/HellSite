@@ -173,6 +173,15 @@
     var form = document.getElementById('modal-form');
     if (!modal) return;
     bindContactModalClose();
+    // Обновляем заголовок/подзаголовок именно под оформление заказа
+    var titleEl = modal.querySelector('.modal-title');
+    var subtitleEl = modal.querySelector('.modal-subtitle');
+    if (titleEl) {
+      titleEl.textContent = 'ОФОРМИТЬ ЗАКАЗ';
+    }
+    if (subtitleEl) {
+      subtitleEl.textContent = 'Проверьте состав корзины и отправьте заявку — мы свяжемся с вами для уточнения деталей.';
+    }
     var cart = getCart();
     var text = cart.length > 0
       ? 'Состав заказа (корзина):\n' + cart.map(function (i) {

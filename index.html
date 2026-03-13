@@ -8,10 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="assets/css/cart.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.1/remodal-default-theme.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.1/remodal.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.1/remodal.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <!-- Общая шапка подставляется из assets/html/header.html -->
@@ -199,22 +195,7 @@
                 </div>
             </div>
         </div>
-
-        <!-- ФЭЛ, щелевые колпачки -->
-        <div class="prod-card">
-            <div class="prod-img"><img src="upload/shop_1/1/3/2/group_132/small_group_132.jpg" alt="ФЭЛ, щелевые колпачки"></div>
-            <div class="prod-info">
-                <h4>ФЭЛ, щелевые колпачки</h4>
-                <div class="prod-links">
-                    <a href="catalog/filtruyushhie-elementy-fel/index.html">Раздел ФЭЛ</a>
-                    <a href="catalog/filtruyushhie-elementy-fel/felv-02-g12b/index.html">ФЭЛВ-0,2-G1/2B</a>
-                    <a href="catalog/filtruyushhie-elementy-fel/felv-02-g34b/index.html">ФЭЛВ-0,2-G3/4B</a>
-                    <a href="catalog/filtruyushhie-elementy-fel/felv-04-g12b/index.html">ФЭЛВ-0,4-G1/2B</a>
-                    <a href="catalog/filtruyushhie-elementy-fel/felv-04-g34b/index.html">ФЭЛВ-0,4-G3/4B</a>
-                </div>
-            </div>
-        </div>
-
+        
         <!-- МКУ и ПКУ: единый каталог со всеми карточками -->
         <div class="prod-card">
             <div class="prod-img"><img src="assets/images/1769571566.png" alt="МКУ"></div>
@@ -225,7 +206,9 @@
                 </div>
             </div>
         </div>
+        
 
+       
         <!-- Горелки -->
         <div class="prod-card">
             <div class="prod-img"><img src="assets/images/1769571783.png" alt="Горелки"></div>
@@ -347,7 +330,7 @@
             <p>Спрашивайте, и мы ответим!</p>
         </div>
         <div class="cta-actions">
-            <button class="btn-black-industrial open-modal-trigger">ЗАДАТЬ ВОПРОС ИНЖЕНЕРУ</button>
+            <button class="btn-black-industrial open-modal-trigger" data-modal-type="question">ЗАДАТЬ ВОПРОС ИНЖЕНЕРУ</button>
         </div>
     </div>
 </section>
@@ -404,14 +387,14 @@
 <!-- Общий подвал подставляется из assets/html/footer.html -->
 <div id="site-footer"></div>
 
-<!-- Модальное окно обратной связи (из первого сайта) -->
+<!-- Модальное окно обратной связи -->
 <div id="contact-modal" class="modal-overlay">
     <div class="modal-box">
         <button class="close-modal-btn">&times;</button>
         <div class="modal-body">
             <h3 class="modal-title">ОСТАВИТЬ ЗАЯВКУ</h3>
-            <p class="modal-subtitle">Специалист НПП КПК свяжется с вами в ближайшее время. После нажатия «Отправить» откроется почтовая программа для отправки заявки.</p>
-            
+            <p class="modal-subtitle">Специалист НПП «КПК» свяжется с вами и уточнит детали заказа.</p>
+
             <form id="modal-form" class="modal-form-content">
                 <div class="input-group">
                     <input type="text" placeholder="ВАШЕ ИМЯ" required>
@@ -435,16 +418,5 @@
 <script src="assets/js/cart.js"></script>
 <!-- Скрипт первого сайта -->
 <script src="script.js"></script>
-
-<div class="remodal" data-remodal-id="callback">
-    <button data-remodal-action="close" class="remodal-close"></button>
-    <h2>Обратная связь</h2>
-    <form class="callback-form">
-        <input type="text" name="name" placeholder="Ваше имя" required>
-        <input type="tel" name="phone" placeholder="Телефон" required>
-        <textarea name="message" placeholder="Сообщение"></textarea>
-        <button type="submit">Отправить</button>
-    </form>
-</div>
 </body>
 </html>

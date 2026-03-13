@@ -112,9 +112,11 @@
 .catalog-page .catalog-container,
 .page-content .catalog-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 24px;
-  max-width: none;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 12px;
 }
 
 .catalog-page .prod-card,
@@ -137,11 +139,11 @@
 
 .catalog-page .prod-img,
 .page-content .prod-img {
-  height: 220px;
+  height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 20px;
   background: linear-gradient(180deg, #fafafa 0%, #f0f0f0 100%);
 }
 
@@ -154,7 +156,7 @@
 
 .catalog-page .prod-info,
 .page-content .prod-info {
-  padding: 20px;
+  padding: 16px 16px 18px;
   border-top: 1px solid #f0f0f0;
   flex-grow: 1;
   display: flex;
@@ -271,6 +273,139 @@
 
   .catalog-page .prod-img,
   .page-content .prod-img {
-    height: 200px;
+    height: 180px;
+  }
+}
+
+/* ----- Модальное окно «Подробнее» (описание товара) ----- */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(10, 10, 11, 0.45);
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.modal-overlay .modal-box {
+  width: 100%;
+  max-width: 620px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.14),
+    0 0 0 1px rgba(0, 0, 0, 0.02);
+  padding: 22px 26px 24px;
+  position: relative;
+  color: #1a1a1b;
+  font-family: 'Open Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.modal-overlay .close-modal-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: none;
+  background: #f3f3f5;
+  color: #555;
+  font-size: 22px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+.modal-overlay .close-modal-btn:hover {
+  background: #ffe5e5;
+  color: #b71c1c;
+  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.25);
+  transform: translateY(-1px);
+}
+
+.modal-overlay .close-modal-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.modal-overlay .modal-body {
+  padding-top: 10px;
+}
+
+.modal-overlay .modal-title {
+  margin: 0 0 0.4rem;
+  font-family: 'Montserrat', 'Open Sans', sans-serif;
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+  color: #1a1a1b;
+}
+
+.modal-overlay .modal-subtitle {
+  margin: 0 0 0.9rem;
+  font-size: 0.9rem;
+  color: #111;
+}
+
+.modal-overlay .modal-price {
+  margin-bottom: 0.9rem;
+  font-weight: 600;
+  font-size: 0.98rem;
+  color: #D32F2F;
+}
+
+.modal-overlay .modal-props {
+  margin-bottom: 0.9rem;
+  font-size: 0.88rem;
+  color: #111;
+}
+
+.modal-overlay .modal-props table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.modal-overlay .modal-props td {
+  padding: 3px 0;
+  vertical-align: top;
+}
+
+.modal-overlay .modal-props td:first-child {
+  color: #111;
+  padding-right: 10px;
+}
+
+.modal-overlay .modal-description {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #111;
+}
+
+@media (max-width: 600px) {
+  .modal-overlay {
+    padding: 12px;
+  }
+
+  .modal-overlay .modal-box {
+    padding: 18px 16px 18px;
+    border-radius: 14px;
+  }
+
+  .modal-overlay .close-modal-btn {
+    top: 10px;
+    right: 10px;
+  }
+
+  .modal-overlay .modal-title {
+    font-size: 1.05rem;
   }
 }

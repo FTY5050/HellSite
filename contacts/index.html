@@ -10,7 +10,7 @@
 <meta content="Контакты" name="keywords"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="max-age=160200, must-revalidate" http-equiv="Cache-Control"/>
-<link href="../favicon.ico" rel="icon" type="image/x-icon"/>
+<link href="../logo.svg" rel="icon" type="image/svg+xml"/>
 <link href="../templates/template1/styles.min.css" rel="stylesheet"/>
 <link href="../assets/css/vendor/suggestions.min.css" rel="stylesheet" type="text/css">
 <link href="../style.css" rel="stylesheet" type="text/css"/>
@@ -18,9 +18,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet" type="text/css"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" rel="stylesheet" type="text/css"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.1/remodal.min.css" rel="stylesheet" type="text/css"/>
-<link href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" rel="stylesheet" type="text/css"/>
-<link href="../assets/css/vendor/header.css" rel="stylesheet" type="text/css"/>
-<link href="../assets/css/vendor/footer.css" rel="stylesheet" type="text/css"/>
+<link href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" rel="stylesheet" type="text/css"/><link href="../assets/css/vendor/footer.css" rel="stylesheet" type="text/css"/>
 <link href="../assets/css/vendor/multiregion.css" rel="stylesheet" type="text/css"/>
 <link href="../assets/css/cart.css" rel="stylesheet" type="text/css"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
@@ -67,7 +65,7 @@
 <div class="modal-box">
 <button class="close-modal-btn">×</button>
 <div class="modal-body">
-<h3 class="modal-title">ОСТАВИТЬ ЗАЯВКУ</h3>
+<h3 class="modal-title">ЗАДАТЬ ВОПРОС ИНЖЕНЕРУ</h3>
 <p class="modal-subtitle">Специалист свяжется с вами. После нажатия «Отправить» откроется почтовая программа для отправки заявки.</p>
 <form class="modal-form-content" id="modal-form">
 <div class="input-group"><input placeholder="ВАШЕ ИМЯ" required="" type="text"/></div>
@@ -129,36 +127,8 @@
     };
 })();
 
-(function() {
-    var contactModal = document.getElementById('contact-modal');
-    var openBtn = document.querySelector('.open-modal-trigger');
-    var closeBtn = contactModal && contactModal.querySelector('.close-modal-btn');
-    if (contactModal && openBtn) {
-        openBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            contactModal.style.display = 'flex';
-            contactModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-    }
-    if (contactModal && closeBtn) {
-        closeBtn.addEventListener('click', function() {
-            contactModal.style.display = 'none';
-            contactModal.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-    }
-    if (contactModal) {
-        contactModal.addEventListener('click', function(e) {
-            if (e.target === contactModal) {
-                contactModal.style.display = 'none';
-                contactModal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-    }
-})();
-</script>
+ </script>
+<script src="../script.js"></script>
 <script src="../assets/js/cart.js"></script>
 </body>
 </html>

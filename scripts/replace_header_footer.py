@@ -17,20 +17,35 @@ NAV_PATTERN = re.compile(
     re.DOTALL | re.IGNORECASE
 )
 
-# Шаблон подвала: от <footer class="main-footer" до закрывающего </footer>
+# Шаблон подвала (пока не используем, но оставим для совместимости)
 FOOTER_PATTERN = re.compile(
     r'<footer\s+class="main-footer"[^>]*>.*?</footer>',
     re.DOTALL | re.IGNORECASE
 )
 
-HEADER_PLACEHOLDER = '''<div id="site-header"></div>
-<script src="/assets/js/header-footer.js"></script>'''
+# Линк на старые стили шапки, которые конфликтуют с новой главной
+HEADER_CSS_PATTERN = re.compile(
+    r'\s*<link\s+href="[^"]*assets/css/vendor/header\.css"[^>]*>\s*',
+    re.IGNORECASE
+)
 
-FOOTER_PLACEHOLDER = '<div id="site-footer"></div>'
+# Локальная модалка контактов (старый дизайн) — удаляем на всех внутренних страницах,
+# чтобы везде использовалась одна глобальная модалка из header-footer.js.
+CONTACT_MODAL_PATTERN = re.compile(
+    r'\s*<div\s+class="modal-overlay"\s+id="contact-modal">.*?</div>\s*',
+    re.DOTALL | re.IGNORECASE
+)
+
+# Теперь используем только placeholder для шапки;
+# подвал больше не трогаем этим скриптом.
+HEADER_PLACEHOLDER = '<div id="site-header"></div>'
+
+# Скрипт шапки/подвала подключаем один раз перед </body>
+HEADER_SCRIPT_TAG = '<script src="/assets/js/header-footer.js"></script>'
 
 
-def already_has_placeholders(html: str) -> bool:
-    return 'id="site-header"' in html and 'id="site-footer"' in html
+def already_has_header_placeholder(html: str) -> bool:
+    return 'id="site-header"' in html
 
 
 def has_header_script(html: str) -> bool:
@@ -44,21 +59,35 @@ def process_file(path: Path, dry_run: bool) -> bool:
     except Exception:
         return False
 
-    if already_has_placeholders(html):
-        return False
-
     changed = False
-    if NAV_PATTERN.search(html) and not already_has_placeholders(html):
+    # Заменяем только шапку, если placeholder ещё не стоит
+    if NAV_PATTERN.search(html) and not already_has_header_placeholder(html):
         new_html, n = NAV_PATTERN.subn(HEADER_PLACEHOLDER, html, count=1)
         if n:
             html = new_html
             changed = True
 
-    if FOOTER_PATTERN.search(html):
-        new_html, n = FOOTER_PATTERN.subn(FOOTER_PLACEHOLDER, html, count=1)
-        if n:
-            html = new_html
-            changed = True
+    # Удаляем линк на старый header.css, чтобы стили шапки
+    # в категориях не отличались от главной страницы.
+    new_html, n_css = HEADER_CSS_PATTERN.subn("", html)
+    if n_css:
+        html = new_html
+        changed = True
+
+    # Удаляем старую локальную модалку контактов, если она есть
+    new_html, n_modal = CONTACT_MODAL_PATTERN.subn("", html)
+    if n_modal:
+        html = new_html
+        changed = True
+
+    # Если шапка была заменена и на странице ещё нет header-footer.js,
+    # добавляем подключение перед </body> (или в конец файла, если его нет).
+    if changed and not has_header_script(html):
+        idx = html.lower().rfind('</body>')
+        if idx != -1:
+            html = html[:idx] + HEADER_SCRIPT_TAG + '\n' + html[idx:]
+        else:
+            html = html + '\n' + HEADER_SCRIPT_TAG + '\n'
 
     if changed and not dry_run:
         path.write_text(html, encoding='utf-8')

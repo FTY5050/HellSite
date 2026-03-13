@@ -154,6 +154,10 @@
       var priceEl = card.querySelector('.product-price');
       var descEl = card.querySelector('.product-description');
       var descText = descEl && descEl.textContent ? descEl.textContent.trim() : '';
+      if (descText) {
+        // Убираем ведущее слово "Описание" во всех вариантах регистра и с разделителями
+        descText = descText.replace(/^Описание[\s:–-]*/i, '');
+      }
 
       if (titleNode) titleNode.textContent = titleEl ? titleEl.textContent : '';
       if (priceNode) priceNode.innerHTML = priceEl ? priceEl.innerHTML : 'Цена: по запросу';
@@ -191,68 +195,10 @@
     });
   }
 
-  /** Открытие модалки по кнопке «Связаться», отправка формы на почту */
-  function initOrderModal() {
-    var modal = document.getElementById('contact-modal');
-    var form = document.getElementById('modal-form');
-    if (!modal) return;
-
-    function openModal() {
-      modal.style.display = 'flex';
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeModal() {
-      modal.classList.remove('active');
-      modal.style.display = 'none';
-      document.body.style.overflow = '';
-    }
-
-    // Делегирование: кнопки рендерятся динамически, вешаем на document
-    document.body.addEventListener('click', function (e) {
-      var btn = e.target.closest && e.target.closest('.open-modal-trigger');
-      if (!btn) return;
-      e.preventDefault();
-      e.stopPropagation();
-      openModal();
-      var product = btn.getAttribute('data-item-title');
-      if (form && product) {
-        var ta = form.querySelector('textarea');
-        if (ta) ta.value = 'Заказ: ' + product;
-      }
-    });
-
-    var closeBtn = modal.querySelector('.close-modal-btn');
-    if (closeBtn) closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', function (e) {
-      if (e.target === modal) closeModal();
-    });
-
-    if (form) {
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        var nameInp = form.querySelector('input[type="text"]');
-        var telInp = form.querySelector('input[type="tel"]');
-        var emailInp = form.querySelector('input[type="email"]');
-        var ta = form.querySelector('textarea');
-        var name = nameInp ? nameInp.value.trim() : '';
-        var phone = telInp ? telInp.value.trim() : '';
-        var email = emailInp ? emailInp.value.trim() : '';
-        var msg = ta ? ta.value.trim() : '';
-        var subject = 'Заявка с сайта НПП КПК';
-        var body = 'Имя: ' + name + '\nТелефон: ' + phone + '\nEmail: ' + email + '\n\nСообщение/заказ:\n' + msg;
-        var mailto = 'mailto:info@nppkpk.ru?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-        window.location.href = mailto;
-        closeModal();
-      });
-    }
-  }
-
   function run() {
     log('run() старт, readyState=', document.readyState);
     init();
     initDetailsModal();
-    initOrderModal();
     log('run() конец');
   }
 

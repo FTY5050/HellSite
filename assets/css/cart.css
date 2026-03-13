@@ -285,8 +285,9 @@
   padding-right: 4px;
 }
 
+/* Светлый текст в модалке «Подробнее» на всех страницах каталога */
 #item-desc-modal .modal-title {
-  color: #fff;
+  color: #000 !important;
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
   line-height: 1.3;
@@ -294,7 +295,7 @@
 
 #item-desc-modal .modal-price {
   font-weight: 600;
-  color: #ffb74d;
+  color: #D32F2F;
   margin-top: 0.25rem;
   font-size: 0.9375rem;
 }
@@ -304,10 +305,10 @@
   display: block;
   margin-top: 1.25rem;
   padding-top: 1.25rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
   font-size: 0.9375rem;
   line-height: 1.7;
-  color: #e4e4e4;
+  color: #000 !important;
   white-space: pre-line;
   word-spacing: 0.02em;
   letter-spacing: 0.01em;

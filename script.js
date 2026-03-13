@@ -1,52 +1,16 @@
 window.addEventListener('load', () => {
     const boiler = document.getElementById('hero-boiler');
-    boiler.style.transform = 'rotate(0deg) scale(1.1)';
+    if (boiler) {
+        boiler.style.transform = 'rotate(0deg) scale(1.1)';
+    }
 });
 
 document.addEventListener('mousemove', (e) => {
     const boiler = document.getElementById('hero-boiler');
+    if (!boiler) return;
     const x = (window.innerWidth / 2 - e.pageX) / 40;
     const y = (window.innerHeight / 2 - e.pageY) / 40;
     boiler.style.transform = `translate(${x}px, ${y}px) rotate(${-x/5}deg)`;
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    const modal = document.getElementById("gallery-modal");
-    const modalImg = document.getElementById("full-img");
-    const captionText = document.getElementById("caption");
-    const closeModal = document.querySelector(".close-modal");
-
-    if (modal && modalImg) {
-        document.querySelectorAll('.gallery-item').forEach(item => {
-            item.addEventListener('click', function() {
-                const img = this.querySelector('img');
-                const title = this.querySelector('h3');
-                
-                modal.style.display = "flex";
-                modal.style.alignItems = "center";
-                modal.style.justifyContent = "center";
-                modal.style.flexDirection = "column";
-                
-                modalImg.src = img.src;
-                captionText.textContent = title ? title.textContent : "";
-                document.body.style.overflow = 'hidden';
-            });
-        });
-    }
-
-    if (closeModal) {
-        closeModal.onclick = function() {
-            modal.style.display = "none";
-            document.body.style.overflow = 'auto';
-        }
-    }
-
-    window.onclick = function(event) {
-        if (event.target === modal) {
-            modal.style.display = "none";
-            document.body.style.overflow = 'auto';
-        }
-    }
 });
 
 function reveal() {
@@ -91,7 +55,18 @@ document.querySelectorAll('.service-block').forEach(card => {
     });
 });
 
-document.addEventListener("DOMContentLoaded", function() {
+// Универсальный хелпер: выполнить сразу, если DOM уже загружен,
+// иначе дождаться DOMContentLoaded (нужно для внутренних страниц,
+// где script.js подгружается после события).
+function onReady(cb) {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', cb);
+    } else {
+        cb();
+    }
+}
+
+onReady(function() {
     const observerOptions = {
         root: null,
         threshold: 0.15
@@ -113,51 +88,27 @@ document.addEventListener("DOMContentLoaded", function() {
         observer.observe(target);
     });
 });
-document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementById('contact-modal');
-    const closeBtn = document.querySelector('.close-modal-btn');
-    
-    // Ищем ВСЕ кнопки, которые должны открывать форму
-    // Добавь класс .open-modal-trigger на кнопки в HTML
-    const openButtons = document.querySelectorAll('.btn-contact, .btn-footer-static, .footer-action-btn');
 
-    openButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Запрет скролла
+// Поиск по старым карточкам каталога (если поле есть на странице)
+const legacyCatalogSearch = document.getElementById('catalog-search');
+if (legacyCatalogSearch) {
+    legacyCatalogSearch.addEventListener('input', function(e) {
+        const term = e.target.value.toLowerCase().trim();
+        const cards = document.querySelectorAll('.catalog-card');
+
+        cards.forEach(card => {
+            const text = card.textContent.toLowerCase();
+            if (text.includes(term)) {
+                card.style.display = 'block';
+                card.style.animation = 'fadeIn 0.4s ease';
+            } else {
+                card.style.display = 'none';
+            }
         });
     });
+}
 
-    // Закрытие по крестику
-    closeBtn.onclick = () => {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    };
-
-    // Закрытие при клике вне формы
-    window.onclick = (event) => {
-        if (event.target === modal) {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-    };
-});
-document.getElementById('catalog-search').addEventListener('input', function(e) {
-    const term = e.target.value.toLowerCase().trim();
-    const cards = document.querySelectorAll('.catalog-card');
-
-    cards.forEach(card => {
-        const text = card.textContent.toLowerCase();
-        if (text.includes(term)) {
-            card.style.display = 'block';
-            card.style.animation = 'fadeIn 0.4s ease';
-        } else {
-            card.style.display = 'none';
-        }
-    });
-});
-document.addEventListener("DOMContentLoaded", function() {
+onReady(function() {
     const revealSection = document.querySelector('.reveal-section');
     const searchInput = document.getElementById('catalog-search');
     const cards = document.querySelectorAll('.prod-card');
@@ -191,49 +142,26 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-    const contactModal = document.getElementById('contact-modal');
-    const openBtn = document.querySelector('.open-modal-trigger');
-    const closeBtn = document.querySelector('.close-modal-btn');
-
-    // Функция ОТКРЫТЬ
-    if (openBtn) {
-        openBtn.onclick = function(e) {
-            e.preventDefault();
-            contactModal.classList.add('active');
-        };
-    }
-
-    // Функция ЗАКРЫТЬ
-    const doClose = () => {
-        contactModal.classList.remove('active');
-    };
-
-    if (closeBtn) closeBtn.onclick = doClose;
-
-    // Закрытие по клику на фон
-    contactModal.onclick = function(e) {
-        if (e.target === contactModal) doClose();
-    };
-
-    // Закрытие по ESC
-    document.onkeydown = function(e) {
-        if (e.key === 'Escape') doClose();
-    };
-});
-document.addEventListener('DOMContentLoaded', () => {
+onReady(() => {
     const modal = document.getElementById('gallery-modal');
     const fullImg = document.getElementById('full-img');
     const prevBtn = document.getElementById('prev-js');
     const nextBtn = document.getElementById('next-js');
     const galleryImages = document.querySelectorAll('.gallery-item img');
 
-    let currentIndex = 0;
+    if (!modal || !fullImg || !prevBtn || !nextBtn || !galleryImages.length) {
+        return;
+    }
 
-    // 1. Собираем все пути к картинкам в массив
+    let currentIndex = 0;
     const imagesSrc = Array.from(galleryImages).map(img => img.src);
 
-    // 2. Открытие при клике на фото
+    function showImage(index) {
+        if (index >= imagesSrc.length) currentIndex = 0;
+        if (index < 0) currentIndex = imagesSrc.length - 1;
+        fullImg.src = imagesSrc[currentIndex];
+    }
+
     galleryImages.forEach((img, index) => {
         img.onclick = () => {
             currentIndex = index;
@@ -242,15 +170,6 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     });
 
-    // 3. Функция показа
-    function showImage(index) {
-        if (index >= imagesSrc.length) currentIndex = 0;
-        if (index < 0) currentIndex = imagesSrc.length - 1;
-        fullImg.src = imagesSrc[currentIndex];
-        console.log("Сейчас фото №:", currentIndex); // Для отладки в F12
-    }
-
-    // 4. Кнопки (явное назначение через onclick)
     nextBtn.onclick = (e) => {
         e.stopPropagation();
         currentIndex++;
@@ -263,11 +182,12 @@ document.addEventListener('DOMContentLoaded', () => {
         showImage(currentIndex);
     };
 
-    // 5. Закрытие
     const closeModalBtn = document.querySelector('.close-modal');
-    if (closeModalBtn) closeModalBtn.onclick = () => {
-        modal.style.display = "none";
-    };
+    if (closeModalBtn) {
+        closeModalBtn.onclick = () => {
+            modal.style.display = "none";
+        };
+    }
 
     window.onclick = (event) => {
         if (event.target === modal) {
@@ -275,50 +195,107 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 });
-const contactModal = document.getElementById('contact-modal');
-const openButtons = document.querySelectorAll('.open-modal-trigger');
-const closeBtn = document.querySelector('.close-modal-btn');
 
-if (contactModal) {
+const contactModal = document.getElementById('contact-modal');
+
+onReady(() => {
+  const openButtons = document.querySelectorAll('.open-modal-trigger');
+  const closeBtn = document.querySelector('.close-modal-btn');
+
+  if (!contactModal) return;
+
+  const titleEl = contactModal.querySelector('.modal-title');
+  const subtitleEl = contactModal.querySelector('.modal-subtitle');
+
+  const setModalTexts = (type) => {
+    if (!titleEl || !subtitleEl) return;
+
+    if (type === 'contact') {
+      titleEl.textContent = 'СВЯЗАТЬСЯ';
+      subtitleEl.textContent = 'Оставьте контакты, и специалист НПП «КПК» свяжется с вами.';
+    } else if (type === 'question') {
+      titleEl.textContent = 'ЗАДАТЬ ВОПРОС';
+      subtitleEl.textContent = 'Опишите ваш вопрос — специалист НПП «КПК» подготовит ответ.';
+    } else {
+      titleEl.textContent = 'ОСТАВИТЬ ЗАЯВКУ';
+      subtitleEl.textContent = 'Специалист НПП «КПК» свяжется с вами и уточнит детали заказа.';
+    }
+  };
+
   openButtons.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
+
       const product = btn.getAttribute('data-item-title');
       const form = document.getElementById('modal-form');
-      if (form && product) {
+
+      if (form) {
         const ta = form.querySelector('textarea');
-        if (ta) ta.value = 'Заказ: ' + product;
+        if (ta) {
+          if (product) {
+            ta.value = 'Заказ: ' + product;
+          } else {
+            ta.value = '';
+          }
+        }
       }
+
+      const typeAttr = btn.getAttribute('data-modal-type');
+      const type = typeAttr || (product ? 'order' : 'contact');
+
+      setModalTexts(type);
+
       contactModal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
       setTimeout(() => contactModal.classList.add('active'), 10);
     });
   });
 
   const closeModal = () => {
     contactModal.classList.remove('active');
-    setTimeout(() => { contactModal.style.display = 'none'; }, 400);
+    setTimeout(() => {
+      contactModal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }, 400);
   };
+
   if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
   contactModal.addEventListener('click', (e) => {
     if (e.target === contactModal) closeModal();
   });
-}
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+});
 
 // Отправка формы заявки на почту (mailto)
-const modalForm = document.getElementById('modal-form');
-if (modalForm) {
+onReady(() => {
+    const modalForm = document.getElementById('modal-form');
+    if (!modalForm) return;
+
     modalForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        const name = (modalForm.querySelector('input[type="text"]') || {}).value || '';
-        const phone = (modalForm.querySelector('input[type="tel"]') || {}).value || '';
-        const email = (modalForm.querySelector('input[type="email"]') || {}).value || '';
-        const msg = (modalForm.querySelector('textarea') || {}).value || '';
+        const nameInput = modalForm.querySelector('input[type="text"]');
+        const phoneInput = modalForm.querySelector('input[type="tel"]');
+        const emailInput = modalForm.querySelector('input[type="email"]');
+        const msgInput = modalForm.querySelector('textarea');
+
+        const name = (nameInput || {}).value || '';
+        const phone = (phoneInput || {}).value || '';
+        const email = (emailInput || {}).value || '';
+        const msg = (msgInput || {}).value || '';
+
         const subject = 'Заявка с сайта НПП КПК';
         const body = 'Имя: ' + name + '\nТелефон: ' + phone + '\nEmail: ' + email + '\n\nСообщение/заказ:\n' + msg;
         window.location.href = 'mailto:info@nppkpk.ru?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
         if (contactModal) {
             contactModal.classList.remove('active');
-            setTimeout(() => { contactModal.style.display = 'none'; }, 400);
+            setTimeout(() => { 
+                contactModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 400);
         }
     });
-}
+});

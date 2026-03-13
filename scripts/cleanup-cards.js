@@ -15,7 +15,12 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 // Явно несуществующие / ошибочные товары, которые нужно выпилить везде (не убираем ВП-О-444/498 — они есть на bikzg.ru в разделе Воздухоподогреватели)
-const TITLE_BLACKLIST = new Set([]);
+const TITLE_BLACKLIST = new Set([
+  'ФЭЛВ-0,2-G1/2B',
+  'ФЭЛВ-0,2-G3/4B',
+  'ФЭЛВ-0,4-G1/2B',
+  'ФЭЛВ-0,4-G3/4B',
+]);
 // Страницы, где не фильтруем по разделу (оставляем все карточки, убираем только blacklist)
 const SKIP_SECTION_FILTER = new Set([
   'catalog/zapchasti/verxnie-raspredelitelnye-ustrojstva/index.html',
