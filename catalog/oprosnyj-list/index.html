@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Опросный лист на МКУ — НПП «КПК»</title>
+<meta name="description" content="Заполните опросный лист на поставку модульной котельной установки. Отправка на info@nppkpk.ru."/>
+<link href="../../logo.svg" rel="icon" type="image/svg+xml"/>
+<link href="../../templates/template1/styles.min.css" rel="stylesheet"/>
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
+<link href="../../assets/css/vendor/footer.css" rel="stylesheet" type="text/css"/>
+<link href="../../assets/css/cart.css" rel="stylesheet" type="text/css"/>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+.page-content { padding: 80px 20px 40px; max-width: 720px; margin: 0 auto; }
+.form-title { font-size: 1.75rem; margin-bottom: 6px; }
+.form-subtitle { color: #555; margin-bottom: 8px; font-size: 0.95rem; }
+.form-company { font-size: 0.9rem; color: #666; margin-bottom: 24px; }
+.opros-form { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 28px; }
+.opros-form section { margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid #eee; }
+.opros-form section:last-of-type { border-bottom: none; }
+.opros-form h3 { font-size: 1.1rem; margin: 0 0 16px; color: #1a1a1b; }
+.opros-form label { display: block; margin-bottom: 6px; font-weight: 500; color: #333; }
+.opros-form input[type="text"], .opros-form input[type="email"], .opros-form input[type="tel"],
+.opros-form input[type="number"], .opros-form textarea { width: 100%; max-width: 400px; padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; font-family: inherit; font-size: 1rem; box-sizing: border-box; }
+.opros-form textarea { min-height: 80px; resize: vertical; }
+.opros-form .row { margin-bottom: 14px; }
+.opros-form .radio-group, .opros-form .check-group { margin-top: 6px; }
+.opros-form .radio-group label, .opros-form .check-group label { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-weight: 400; cursor: pointer; }
+.opros-form input[type="radio"], .opros-form input[type="checkbox"] { width: auto; margin: 0; }
+.opros-form .inline-inputs { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 6px; }
+.opros-form .inline-inputs input { width: 100px; max-width: none; }
+.opros-form .inline-inputs span { color: #666; font-size: 0.9rem; }
+.form-actions { margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap; }
+.form-actions button { padding: 14px 28px; border-radius: 8px; font-weight: 600; font-size: 1rem; border: none; cursor: pointer; font-family: inherit; }
+.btn-submit { background: #2a7c4a; color: #fff; }
+.btn-submit:hover { background: #236b3f; }
+.btn-download { background: #1A1A1B; color: #fff; text-decoration: none; display: inline-block; line-height: 1; }
+.btn-download:hover { background: #333; color: #fff; }
+.doc-hint { margin-top: 16px; font-size: 0.85rem; color: #888; }
+</style>
+</head>
+<body id="mp-pusher">
+<div id="site-header"></div>
+<script src="../../assets/js/header-footer.js"></script>
+
+<div class="page-content">
+<h1 class="form-title">Опросный лист</h1>
+<p class="form-subtitle">На поставку модульной котельной установки</p>
+<p class="form-company">ООО «НПП „Котельно-промышленная компания“». Заполните форму и нажмите «Отправить» — откроется почтовая программа с готовым письмом.</p>
+
+<form id="opros-form" class="opros-form">
+    <section>
+        <h3>Реквизиты заказчика</h3>
+        <div class="row">
+            <label for="f-date">Дата</label>
+            <input type="text" id="f-date" name="date" placeholder="ДД.ММ.ГГГГ" autocomplete="off">
+        </div>
+        <div class="row">
+            <label for="f-zakazchik">Заказчик</label>
+            <input type="text" id="f-zakazchik" name="zakazchik" placeholder="Организация / ФИО" required>
+        </div>
+        <div class="row">
+            <label for="f-address">Адрес строительства</label>
+            <input type="text" id="f-address" name="address" placeholder="Адрес объекта">
+        </div>
+        <div class="row">
+            <label for="f-contact">Контактный телефон, факс, e-mail, мобильный и ответственное лицо</label>
+            <textarea id="f-contact" name="contact" placeholder="Телефон, e-mail, ФИО ответственного"></textarea>
+        </div>
+    </section>
+
+    <section>
+        <h3>1. Тип котельной</h3>
+        <div class="radio-group" role="radiogroup" aria-label="Тип котельной">
+            <label><input type="radio" name="q1" value="водогрейная"> Водогрейная</label>
+            <label><input type="radio" name="q1" value="паровая"> Паровая</label>
+        </div>
+    </section>
+
+    <section>
+        <h3>2. Категория котельной по теплоснабжению</h3>
+        <div class="radio-group">
+            <label><input type="radio" name="q2" value="I"> I</label>
+            <label><input type="radio" name="q2" value="II"> II</label>
+        </div>
+    </section>
+
+    <section>
+        <h3>3. Наличие резервного котла</h3>
+        <div class="radio-group">
+            <label><input type="radio" name="q3" value="требуется"> Требуется резервный котел</label>
+            <label><input type="radio" name="q3" value="не требуется"> Резервный котел не требуется</label>
+        </div>
+    </section>
+
+    <section>
+        <h3>4. Вид строительства</h3>
+        <div class="radio-group">
+            <label><input type="radio" name="q4" value="новое"> Новое</label>
+            <label><input type="radio" name="q4" value="реконструкция"> Реконструкция</label>
+        </div>
+    </section>
+
+    <section>
+        <h3>5. Вид топлива</h3>
+        <div class="radio-group">
+            <label><input type="radio" name="q5" value="твердое (каменный, бурый уголь)"> Твердое (каменный, бурый уголь)</label>
+            <label><input type="radio" name="q5" value="жидкое тяжелое"> Жидкое топливо (тяжелое)</label>
+            <label><input type="radio" name="q5" value="жидкое легкое"> Жидкое топливо (легкое)</label>
+            <label><input type="radio" name="q5" value="природный газ"> Природный газ</label>
+            <label><input type="radio" name="q5" value="иное"> Иное</label>
+        </div>
+    </section>
+
+    <section>
+        <h3>6. Характеристики топлива</h3>
+        <div class="row">
+            <label>Газопровод: диаметр (мм), давление (МПа), калорийность</label>
+            <div class="inline-inputs">
+                <input type="text" name="q6_gas_d" placeholder="Ø мм"> <span>мм</span>
+                <input type="text" name="q6_gas_p" placeholder="МПа"> <span>МПа</span>
+                <input type="text" name="q6_gas_cal" placeholder="калорийность">
+            </div>
+        </div>
+        <div class="row">
+            <label>Твердое топливо: марка</label>
+            <input type="text" name="q6_solid" placeholder="Марка угля">
+        </div>
+        <div class="row">
+            <label>Жидкое топливо: марка, калорийность (ккал/кг)</label>
+            <div class="inline-inputs">
+                <input type="text" name="q6_liquid_m" placeholder="Марка">
+                <input type="text" name="q6_liquid_cal" placeholder="ккал/кг">
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h3>7. Распределение тепловой нагрузки (Гкал/час)</h3>
+        <div class="row">
+            <label>Технология / водогрейные котельные</label>
+            <input type="text" name="q7_tech" placeholder="Гкал/час">
+        </div>
+        <div class="row">
+            <label>Отопление</label>
+            <input type="text" name="q7_otop" placeholder="Гкал/час">
+        </div>
+        <div class="row">
+            <label>Горячее водоснабжение (м³)</label>
+            <input type="text" name="q7_gvs" placeholder="м³">
+        </div>
+        <div class="row">
+            <label>Вентиляция</label>
+            <input type="text" name="q7_vent" placeholder="Гкал/час">
+        </div>
+    </section>
+
+    <section>
+        <h3>8. Параметры теплоносителя на выходе из котельной</h3>
+        <div class="radio-group">
+            <label><input type="radio" name="q8_type" value="вода"> Вода</label>
+            <label><input type="radio" name="q8_type" value="пар"> Пар</label>
+        </div>
+        <div class="row">
+            <label>Температура (°С)</label>
+            <input type="text" name="q8_temp" placeholder="°С">
+        </div>
+        <div class="row">
+            <label>Давление (МПа)</label>
+            <input type="text" name="q8_press" placeholder="МПа">
+        </div>
+    </section>
+
+    <section>
+        <h3>9. Тепловая схема сети отопления</h3>
+        <div class="radio-group">
+            <label><input type="radio" name="q9" value="двухконтурная"> Двухконтурная (через теплообменники)</label>
+            <label><input type="radio" name="q9" value="одноконтурная"> Одноконтурная</label>
+        </div>
+    </section>
+
+    <section>
+        <h3>10. Тепловая схема сети отопления</h3>
+        <div class="radio-group">
+            <label><input type="radio" name="q10" value="открытая"> Открытая</label>
+            <label><input type="radio" name="q10" value="закрытая"> Закрытая</label>
+        </div>
+    </section>
+
+    <section>
+        <h3>11. Объем подпитки</h3>
+        <div class="radio-group">
+            <label><input type="radio" name="q11" value="согласно правилам"> Объеме согласно п.3.5.5 Правил технической эксплуатации</label>
+            <label><input type="radio" name="q11" value="из условий"> Исходя из условий эксплуатации</label>
+        </div>
+        <div class="row">
+            <input type="text" name="q11_m3" placeholder="м³/ч">
+        </div>
+    </section>
+
+    <section>
+        <h3>12. Гидравлическое сопротивление (МПа)</h3>
+        <div class="row">
+            <label>Системы отопления</label>
+            <input type="text" name="q12_otop" placeholder="МПа">
+        </div>
+        <div class="row">
+            <label>Системы ГВС</label>
+            <input type="text" name="q12_gvs" placeholder="МПа">
+        </div>
+        <div class="row">
+            <label>Системы вентиляции</label>
+            <input type="text" name="q12_vent" placeholder="МПа">
+        </div>
+    </section>
+
+    <section>
+        <h3>13. Тепловая схема сети ГВС</h3>
+        <div class="radio-group">
+            <label><input type="radio" name="q13" value="наличие циркуляции"> Наличие циркуляции обратной воды</label>
+            <label><input type="radio" name="q13" value="отсутствие циркуляции"> Отсутствие циркуляции обратной воды</label>
+        </div>
+    </section>
+
+    <section>
+        <h3>14. Исходная вода на входе в котельную</h3>
+        <div class="row">
+            <label>Температура (°С)</label>
+            <input type="text" name="q14_temp" placeholder="°С">
+        </div>
+        <div class="row">
+            <label>Давление (МПа)</label>
+            <input type="text" name="q14_press" placeholder="МПа">
+        </div>
+    </section>
+
+    <section>
+        <h3>15. Конденсат (для паровых)</h3>
+        <div class="radio-group">
+            <label><input type="radio" name="q15" value="возврат"> Объем возврата %</label>
+            <label><input type="radio" name="q15" value="без возврата"> Без возврата</label>
+        </div>
+        <div class="row">
+            <input type="text" name="q15_pct" placeholder="% возврата">
+        </div>
+    </section>
+
+    <section>
+        <h3>16. Дымовая труба</h3>
+        <div class="radio-group">
+            <label><input type="radio" name="q16" value="существующая"> Существующая</label>
+            <label><input type="radio" name="q16" value="новая"> Новая</label>
+        </div>
+        <div class="row">
+            <input type="text" name="q16_d" placeholder="Диаметр D, мм">
+        </div>
+    </section>
+
+    <section>
+        <h3>17. Степень автоматизации</h3>
+        <div class="radio-group">
+            <label><input type="radio" name="q17" value="минимальная"> Минимально автоматизированная (согласно нормам)</label>
+            <label><input type="radio" name="q17" value="автоматизированная"> Автоматизированная (с обслуживающим персоналом)</label>
+            <label><input type="radio" name="q17" value="котельная-автомат"> Котельная-автомат (без обслуживающего персонала)</label>
+        </div>
+    </section>
+
+    <section>
+        <h3>18. Блок учета расходов (отметьте нужное)</h3>
+        <div class="check-group">
+            <label><input type="checkbox" name="q18_toplivo" value="топлива"> Топлива</label>
+            <label><input type="checkbox" name="q18_podpita" value="подпиточной воды"> Подпиточной воды</label>
+            <label><input type="checkbox" name="q18_teplo_kom" value="тепловой энергии с коммерческим учетом"> Тепловой энергии с коммерческим учетом</label>
+            <label><input type="checkbox" name="q18_teplo_bez" value="тепловой энергии без коммерческого учета"> Тепловой энергии без коммерческого учета</label>
+            <label><input type="checkbox" name="q18_elektro" value="электроэнергии"> Электроэнергии</label>
+            <label><input type="checkbox" name="q18_water" value="исходной воды"> Исходной воды</label>
+        </div>
+    </section>
+
+    <section>
+        <h3>19. Оборудование котельной</h3>
+        <div class="row">
+            <label>Горелочное устройство: отечественное / импортное</label>
+            <input type="text" name="q19" placeholder="Укажите">
+        </div>
+    </section>
+
+    <section>
+        <h3>20. Элементная база автоматики</h3>
+        <div class="radio-group">
+            <label><input type="radio" name="q20" value="российского производителя"> Российского производителя</label>
+            <label><input type="radio" name="q20" value="иное"> Иное</label>
+        </div>
+    </section>
+
+    <section>
+        <h3>21. Наличие вспомогательных помещений</h3>
+        <div class="check-group">
+            <label><input type="checkbox" name="q21_sanuzel" value="сантехнический узел"> Сантехнический узел</label>
+            <label><input type="checkbox" name="q21_dush" value="душевая"> Душевая</label>
+        </div>
+    </section>
+
+    <section>
+        <h3>22. Система подачи жидкого топлива</h3>
+        <div class="row">
+            <input type="text" name="q22" placeholder="Мазутоподготовительное оборудование (насосы, фильтры, подогреватели) и т.п.">
+        </div>
+    </section>
+
+    <section>
+        <h3>23. Тип топочного устройства для твердого топлива</h3>
+        <div class="radio-group">
+            <label><input type="radio" name="q23" value="ручное"> Ручное</label>
+            <label><input type="radio" name="q23" value="механическое"> Механическое</label>
+        </div>
+    </section>
+
+    <section>
+        <h3>24. Система подачи твердого топлива</h3>
+        <div class="radio-group">
+            <label><input type="radio" name="q24" value="с резервной веткой"> С резервной веткой</label>
+            <label><input type="radio" name="q24" value="без резервной"> Без резервной ветки</label>
+        </div>
+    </section>
+
+    <section>
+        <h3>25. Тип устройства подачи угля к котлам</h3>
+        <div class="radio-group">
+            <label><input type="radio" name="q25" value="транспортер скребковый"> Транспортер скребковый</label>
+            <label><input type="radio" name="q25" value="иное"> Иное</label>
+        </div>
+    </section>
+
+    <section>
+        <h3>26. Уровень расположения бункера загрузки угля от 0,000 площадки</h3>
+        <div class="row">
+            <input type="text" name="q26" placeholder="м">
+        </div>
+    </section>
+
+    <section>
+        <h3>27. Выбранный вариант комплектации линии углеподачи</h3>
+        <div class="row">
+            <input type="text" name="q27" placeholder="Вариант">
+        </div>
+    </section>
+
+    <section>
+        <h3>28. Тип устройства шлакозолоудаления</h3>
+        <div class="radio-group">
+            <label><input type="radio" name="q28" value="транспортер скребковый"> Транспортер скребковый</label>
+            <label><input type="radio" name="q28" value="иное"> Иное</label>
+        </div>
+    </section>
+
+    <section>
+        <h3>29. Система шлакозолоудаления</h3>
+        <div class="radio-group">
+            <label><input type="radio" name="q29" value="бункер-накопитель"> В бункер-накопитель шлака с последующей выгрузкой в автотранспорт</label>
+            <label><input type="radio" name="q29" value="иное"> Иное</label>
+        </div>
+    </section>
+
+    <section>
+        <h3>30. Категория электроснабжения</h3>
+        <div class="radio-group">
+            <label><input type="radio" name="q30" value="1"> I</label>
+            <label><input type="radio" name="q30" value="2"> II</label>
+        </div>
+    </section>
+
+    <section>
+        <h3>31. Качество электрической энергии</h3>
+        <div class="radio-group">
+            <label><input type="radio" name="q31" value="регулирование напряжения"> Необходимость регулирования напряжения</label>
+            <label><input type="radio" name="q31" value="не требуется"> Не требуется</label>
+        </div>
+    </section>
+
+    <section>
+        <h3>32. Дополнительные устройства защиты от поражения электрическим током</h3>
+        <div class="row">
+            <input type="text" name="q32" placeholder="При необходимости укажите">
+        </div>
+    </section>
+
+    <section>
+        <h3>33. Климатические условия</h3>
+        <div class="row">
+            <label>Расчетная t наружного воздуха (°С)</label>
+            <input type="text" name="q33_t_nar" placeholder="°С">
+        </div>
+        <div class="row">
+            <label>Средняя t наиболее холодного месяца (°С)</label>
+            <input type="text" name="q33_t_cold" placeholder="°С">
+        </div>
+        <div class="row">
+            <label>Снеговые нагрузки (кг/м²)</label>
+            <input type="text" name="q33_sneg" placeholder="кг/м²">
+        </div>
+    </section>
+
+    <section>
+        <h3>34. Способ доставки</h3>
+        <div class="radio-group">
+            <label><input type="radio" name="q34" value="железнодорожный"> Железнодорожным транспортом</label>
+            <label><input type="radio" name="q34" value="авто"> Автомобильным транспортом</label>
+            <label><input type="radio" name="q34" value="иное"> Иное</label>
+        </div>
+    </section>
+
+    <section>
+        <h3>Примечания</h3>
+        <div class="row">
+            <textarea name="primechaniya" placeholder="Дополнительные сведения"></textarea>
+        </div>
+    </section>
+
+    <div class="form-actions">
+        <button type="submit" class="btn-submit">Отправить опросный лист на почту</button>
+        <a href="Oprosnyj-list-MKU.xls" class="btn-download" download style="padding: 14px 28px;">Скачать бланк (XLS)</a>
+    </div>
+</form>
+
+<p class="doc-hint">При нажатии «Отправить» откроется ваша почтовая программа с заполненным письмом на адрес info@nppkpk.ru. Отправьте письмо для передачи заявки в НПП «КПК».</p>
+</div>
+
+<div id="site-footer"></div>
+
+<script>
+(function() {
+    var form = document.getElementById('opros-form');
+    var email = 'info@nppkpk.ru';
+    var subject = 'Опросный лист на МКУ — заявка с сайта';
+
+    function getVal(name) {
+        var el = form.querySelector('[name="' + name + '"]');
+        if (!el) return '';
+        if (el.type === 'radio' || el.type === 'checkbox') {
+            if (el.type === 'checkbox') {
+                var check = form.querySelectorAll('[name="' + name + '"]:checked');
+                return Array.from(check).map(function(c) { return c.value || c.nextSibling?.textContent?.trim() || 'да'; }).join(', ') || '—';
+            }
+            var r = form.querySelector('[name="' + name + '"]:checked');
+            return r ? (r.value || r.nextSibling?.textContent?.trim()) : '—';
+        }
+        return (el.value || '').trim() || '—';
+    }
+
+    function buildBody() {
+        var parts = [];
+        parts.push('ОПРОСНЫЙ ЛИСТ НА ПОСТАВКУ МОДУЛЬНОЙ КОТЕЛЬНОЙ УСТАНОВКИ');
+        parts.push('');
+        parts.push('Дата: ' + getVal('date'));
+        parts.push('Заказчик: ' + getVal('zakazchik'));
+        parts.push('Адрес строительства: ' + getVal('address'));
+        parts.push('Контакты: ' + getVal('contact'));
+        parts.push('');
+        parts.push('1. Тип котельной: ' + getVal('q1'));
+        parts.push('2. Категория по теплоснабжению: ' + getVal('q2'));
+        parts.push('3. Резервный котел: ' + getVal('q3'));
+        parts.push('4. Вид строительства: ' + getVal('q4'));
+        parts.push('5. Вид топлива: ' + getVal('q5'));
+        parts.push('6. Характеристики топлива (газ d/p, твердое, жидкое): ' + getVal('q6_gas_d') + ', ' + getVal('q6_gas_p') + ', ' + getVal('q6_solid') + ', ' + getVal('q6_liquid_m') + ' ' + getVal('q6_liquid_cal'));
+        parts.push('7. Тепловая нагрузка (техн/отоп/ГВС/вент): ' + getVal('q7_tech') + ', ' + getVal('q7_otop') + ', ' + getVal('q7_gvs') + ', ' + getVal('q7_vent'));
+        parts.push('8. Теплоноситель: ' + getVal('q8_type') + ', t ' + getVal('q8_temp') + ' °С, P ' + getVal('q8_press') + ' МПа');
+        parts.push('9. Схема отопления: ' + getVal('q9'));
+        parts.push('10. Схема отопления (откр/закр): ' + getVal('q10'));
+        parts.push('11. Подпитка: ' + getVal('q11') + ' ' + getVal('q11_m3'));
+        parts.push('12. Гидросопротивление (отоп/ГВС/вент МПа): ' + getVal('q12_otop') + ', ' + getVal('q12_gvs') + ', ' + getVal('q12_vent'));
+        parts.push('13. Сеть ГВС: ' + getVal('q13'));
+        parts.push('14. Исходная вода: t ' + getVal('q14_temp') + ' °С, P ' + getVal('q14_press'));
+        parts.push('15. Конденсат: ' + getVal('q15') + ' ' + getVal('q15_pct'));
+        parts.push('16. Дымовая труба: ' + getVal('q16') + ' D ' + getVal('q16_d'));
+        parts.push('17. Автоматизация: ' + getVal('q17'));
+        var uchet = [getVal('q18_toplivo'), getVal('q18_podpita'), getVal('q18_teplo_kom'), getVal('q18_teplo_bez'), getVal('q18_elektro'), getVal('q18_water')].filter(function(v) { return v !== '—'; });
+        parts.push('18. Блок учета: ' + (uchet.length ? uchet.join('; ') : '—'));
+        parts.push('19. Горелочное устройство: ' + getVal('q19'));
+        parts.push('20. Элементная база автоматики: ' + getVal('q20'));
+        var pom = [getVal('q21_sanuzel'), getVal('q21_dush')].filter(function(v) { return v !== '—'; });
+        parts.push('21. Вспомогательные помещения: ' + (pom.length ? pom.join('; ') : '—'));
+        parts.push('22. Подача жидкого топлива: ' + getVal('q22'));
+        parts.push('23. Топочное устройство (твердое топливо): ' + getVal('q23'));
+        parts.push('24. Подача твердого топлива: ' + getVal('q24'));
+        parts.push('25. Подача угля: ' + getVal('q25'));
+        parts.push('26. Уровень бункера угля: ' + getVal('q26'));
+        parts.push('27. Вариант углеподачи: ' + getVal('q27'));
+        parts.push('28. Шлакозолоудаление (тип): ' + getVal('q28'));
+        parts.push('29. Шлакозолоудаление (система): ' + getVal('q29'));
+        parts.push('30. Категория электроснабжения: ' + getVal('q30'));
+        parts.push('31. Качество электроэнергии: ' + getVal('q31'));
+        parts.push('32. Защита от поражения током: ' + getVal('q32'));
+        parts.push('33. Климат: t_нар ' + getVal('q33_t_nar') + ', t_холод ' + getVal('q33_t_cold') + ', снег ' + getVal('q33_sneg'));
+        parts.push('34. Доставка: ' + getVal('q34'));
+        parts.push('');
+        parts.push('Примечания: ' + getVal('primechaniya'));
+        return parts.join('\r\n');
+    }
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var body = buildBody();
+        var mailto = 'mailto:' + encodeURIComponent(email) + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        window.location.href = mailto;
+    });
+
+    var dateEl = document.getElementById('f-date');
+    if (dateEl) {
+        var d = new Date();
+        var pad = function(n) { return n < 10 ? '0' + n : n; };
+        dateEl.placeholder = pad(d.getDate()) + '.' + pad(d.getMonth() + 1) + '.' + d.getFullYear();
+    }
+})();
+</script>
+</body>
+</html>
