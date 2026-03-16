@@ -501,7 +501,7 @@ body#mp-pusher #site-footer {
   z-index: 999;
   background: rgba(26, 26, 27, 0.97);
   overflow-y: auto;
-  padding: 6rem 2rem 3rem;
+  padding: 6rem 2rem 1.5rem;
   box-sizing: border-box;
 }
 .header-mobile-menu__inner {
