@@ -787,10 +787,23 @@ body#mp-pusher #site-footer {
 }
 .apple-liquid-glass-large:focus-within .search-icon { color: #111; transform: scale(1.15); }
 
-.catalog-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1400px; margin: 0 auto; }
+.catalog-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
 .prod-card {
-    background: #fff; border: 1px solid #e0e0e0; display: flex; flex-direction: column;
-    transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .prod-card:hover { border-color: #D32F2F; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
 .prod-img { height: 200px; display: flex; align-items: center; justify-content: center; padding: 20px; background: #fff; }
@@ -804,6 +817,9 @@ body#mp-pusher #site-footer {
   align-items: flex-start;
   text-align: left;
   box-sizing: border-box;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 .prod-info h4 { margin: 0 0 15px 0; font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 800; text-transform: uppercase; color: #1A1A1B; text-align: left; }
 .prod-links { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -817,8 +833,8 @@ body#mp-pusher #site-footer {
 /* Карточки каталога: характеристики (таблица или список с bikzg.ru) */
 .product-price { font-size: 0.9rem; color: #666; margin-bottom: 0.5rem; text-align: left; width: 100%; }
 .product-props { font-size: 0.85rem; color: #444; margin: 0.5rem 0 1rem; text-align: left; width: 100%; }
-.product-props table { width: 100%; border-collapse: collapse; text-align: left; }
-.product-props td { padding: 2px 4px; vertical-align: top; }
+.product-props table { width: 100%; border-collapse: collapse; text-align: left; table-layout: fixed; }
+.product-props td { padding: 2px 4px; vertical-align: top; overflow-wrap: break-word; word-break: break-word; }
 .product-props--list .product-props__title { display: block; font-weight: 700; margin-bottom: 0.35rem; color: #333; text-align: left; }
 .product-props--list ul { margin: 0; padding-left: 1.1rem; text-align: left; }
 .prod-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1rem; align-self: flex-start; }

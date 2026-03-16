@@ -121,11 +121,14 @@
 .catalog-page .catalog-container,
 .page-content .catalog-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
   gap: 24px;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 12px;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .catalog-page .prod-card,
@@ -136,6 +139,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  min-width: 0;
   transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
 }
 
@@ -170,6 +174,9 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .catalog-page .prod-info h4,
@@ -182,6 +189,8 @@
   color: #1a1a1b;
   text-transform: none;
   letter-spacing: -0.01em;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .catalog-page .product-price,
@@ -204,12 +213,15 @@
 .page-content .product-props table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
 }
 
 .catalog-page .product-props td,
 .page-content .product-props td {
   padding: 3px 0;
   vertical-align: top;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .catalog-page .product-props td:first-child,
