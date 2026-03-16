@@ -108,6 +108,15 @@
   box-shadow: 0 4px 12px rgba(211, 47, 47, 0.12);
 }
 
+/* ----- Только на главной каталога (catalog.html): карточки невидимы, видны только кнопки ----- */
+.catalog-main .catalog-container .prod-card .prod-img,
+.catalog-main .catalog-container .prod-card .prod-info h4,
+.catalog-main .catalog-container .prod-card .prod-info .product-price,
+.catalog-main .catalog-container .prod-card .prod-info .product-props,
+.catalog-main .catalog-container .prod-card .prod-info .product-description {
+  display: none !important;
+}
+
 /* ----- Сетка карточек товаров (главная каталога и подстраницы) ----- */
 .catalog-page .catalog-container,
 .page-content .catalog-container {

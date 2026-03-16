@@ -5,7 +5,7 @@
  */
 (function () {
   'use strict';
-  var LOG = true; // логи в консоль; отключить: window.NPPKPK_CatalogDebug = false после загрузки
+  var LOG = false; // логи в консоль; включить: window.NPPKPK_CatalogDebug = true после загрузки
   function log() {
     if (LOG && (typeof window.NPPKPK_CatalogDebug === 'undefined' || window.NPPKPK_CatalogDebug)) {
       console.log.apply(console, ['[NPPKPK catalog]'].concat(Array.prototype.slice.call(arguments)));
@@ -166,7 +166,10 @@
         descNode.textContent = descText || 'Описание уточняйте у менеджера.';
       }
       var propsNode = document.getElementById('desc-modal-props');
-      if (propsNode) { propsNode.style.display = 'none'; propsNode.innerHTML = ''; }
+      if (propsNode) {
+        propsNode.style.display = 'none';
+        propsNode.innerHTML = '';
+      }
 
       log('click: показываю модалку, title=', titleNode ? titleNode.textContent : '');
       modal.style.display = 'flex';
@@ -208,8 +211,5 @@
   } else {
     run();
   }
-  window.NPPKPK_CatalogDebug = true;
-  if (typeof console !== 'undefined') {
-    console.log('[NPPKPK catalog] скрипт загружен. Логи с префиксом [NPPKPK catalog]. Отключить: NPPKPK_CatalogDebug = false');
-  }
+  window.NPPKPK_CatalogDebug = false;
 })();

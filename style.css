@@ -385,6 +385,22 @@ body > section:last-of-type { padding-bottom: 4rem; }
 }
 .main-footer { margin-top: 0; }
 
+/* Подвал всегда у нижнего края окна при коротком контенте */
+body#mp-pusher {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+body#mp-pusher .page-content {
+    flex: 1 0 auto;
+    min-height: 40vh;
+    visibility: visible;
+    opacity: 1;
+}
+body#mp-pusher #site-footer {
+    flex-shrink: 0;
+}
+
 .header-inner {
     display: flex; justify-content: space-between; align-items: center;
     padding: 12px 40px; max-width: 1700px; margin: 0 auto;

@@ -333,7 +333,9 @@
   border-radius: 3px;
 }
 
-#item-desc-modal .modal-description::-webkit-scrollbar-thumb:hover,
+#item-desc-modal .modal-description::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
 #desc-modal-description::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.35);
 }
