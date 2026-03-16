@@ -1,0 +1,13 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "hellsite",
+  "compatibility_date": "2025-09-27",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": ".",
+    "exclude": [".git", ".git/**", "video", "video/**"]
+  },
+  "compatibility_flags": ["nodejs_compat"]
+}
