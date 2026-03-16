@@ -494,16 +494,6 @@ body#mp-pusher #site-footer {
   border-radius: 1px;
   transition: transform 0.25s, opacity 0.25s;
 }
-.nav-mobile-open .header-mobile-toggle__line:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-.nav-mobile-open .header-mobile-toggle__line:nth-child(2) {
-  opacity: 0;
-}
-.nav-mobile-open .header-mobile-toggle__line:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
-
 .header-mobile-menu {
   display: none;
   position: fixed;
