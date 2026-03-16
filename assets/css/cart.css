@@ -375,3 +375,25 @@
 #item-desc-modal .close-modal-btn:hover {
   color: #fff;
 }
+
+@media (max-width: 900px) {
+  #item-desc-modal {
+    padding: 1rem;
+    align-items: flex-start;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+  }
+  #item-desc-modal .modal-box {
+    max-width: calc(100vw - 2rem);
+    width: 100%;
+    margin: 0 auto;
+    padding: 1.5rem 1.25rem;
+    min-height: 50vh;
+    max-height: calc(100vh - 4rem);
+  }
+  #item-desc-modal .close-modal-btn {
+    top: 12px;
+    right: 12px;
+    font-size: 28px;
+  }
+}
