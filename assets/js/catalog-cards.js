@@ -101,6 +101,37 @@
     container.innerHTML = html;
     var btnCount = container.querySelectorAll('.btn-details').length;
     log('init: отрисовано карточек:', list.length, 'кнопок "Подробнее":', btnCount);
+
+    // #region agent log
+    try {
+      var firstCard = container.querySelector('.prod-card');
+      if (firstCard) {
+        fetch('http://127.0.0.1:7671/ingest/540318ba-453b-4b17-ac6f-00e2f31037b9', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Debug-Session-Id': '9a37a3'
+          },
+          body: JSON.stringify({
+            sessionId: '9a37a3',
+            runId: 'vpu-layout-1',
+            hypothesisId: 'H1',
+            location: 'assets/js/catalog-cards.js:init',
+            message: 'catalog layout sizes',
+            data: {
+              containerWidth: container.offsetWidth,
+              containerScrollWidth: container.scrollWidth,
+              cardWidth: firstCard.offsetWidth,
+              cardScrollWidth: firstCard.scrollWidth
+            },
+            timestamp: Date.now()
+          })
+        }).catch(function () {});
+      }
+    } catch (e) {
+      // проглатываем ошибки логгера, чтобы не ломать страницу
+    }
+    // #endregion
   }
 
   /** Создаёт модалку «Подробнее», если её нет на странице */
