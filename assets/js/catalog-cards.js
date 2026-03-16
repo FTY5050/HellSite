@@ -122,7 +122,9 @@
               containerWidth: container.offsetWidth,
               containerScrollWidth: container.scrollWidth,
               cardWidth: firstCard.offsetWidth,
-              cardScrollWidth: firstCard.scrollWidth
+              cardScrollWidth: firstCard.scrollWidth,
+              viewportWidth: document.documentElement.clientWidth,
+              pageScrollWidth: document.documentElement.scrollWidth
             },
             timestamp: Date.now()
           })
