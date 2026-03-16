@@ -81,6 +81,22 @@
   transform: translateY(0);
 }
 
+@media (max-width: 900px) {
+  .cart-widget__dropdown {
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    top: 64px;
+    margin-top: 0;
+    width: auto;
+    max-height: 60vh;
+    transform: translateY(-8px);
+  }
+  .cart-widget__dropdown.cart-widget__dropdown--open {
+    transform: translateY(0);
+  }
+}
+
 .cart-widget__header {
   padding: 12px 16px;
   font-size: 0.875rem;
