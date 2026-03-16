@@ -702,10 +702,26 @@ body#mp-pusher #site-footer {
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
-.s-content h3 { font-size: 22px; color: var(--dark); margin-bottom: 15px; font-weight: 800; }
-.s-content p { font-size: 15px; color: #666; line-height: 1.6; margin-bottom: 25px; }
+.s-content h3 {
+    font-size: 22px;
+    color: var(--dark);
+    margin-bottom: 15px;
+    font-weight: 800;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+.s-content p {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
 
 .s-link {
     font-weight: 700; font-size: 12px; text-transform: uppercase;

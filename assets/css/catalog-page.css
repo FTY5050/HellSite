@@ -54,6 +54,8 @@
   letter-spacing: -0.02em;
   line-height: 1.1;
   text-align: center;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .catalog-page__subtitle {
@@ -262,6 +264,8 @@
   padding-bottom: 1rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   text-align: center;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 /* Адаптив */
@@ -286,6 +290,8 @@
   .catalog-page .catalog-container,
   .page-content .catalog-container {
     grid-template-columns: 1fr;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .catalog-sections__list {
@@ -295,6 +301,15 @@
   .catalog-page .prod-img,
   .page-content .prod-img {
     height: 180px;
+  }
+}
+
+/* Дополнительное сжатие отступов на очень узких экранах,
+   чтобы границы карточек каталога не выходили за край экрана */
+@media (max-width: 420px) {
+  body#mp-pusher .page-content {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
   }
 }
 
