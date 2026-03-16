@@ -25,6 +25,13 @@
   }
   function run() {
     inject("site-header", applyBase(headerHtml));
+    var pageContent = document.querySelector(".page-content");
+    if (pageContent) {
+      var backWrap = document.createElement("div");
+      backWrap.className = "page-back-wrap";
+      backWrap.innerHTML = "<button type=\"button\" class=\"page-back-btn\" onclick=\"history.back()\">Назад</button>";
+      pageContent.insertBefore(backWrap, pageContent.firstChild);
+    }
     try {
       document.dispatchEvent(new CustomEvent("nppkpk-header-ready"));
     } catch (e) {}

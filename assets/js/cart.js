@@ -293,6 +293,12 @@
     }
   });
 
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'visible' && document.getElementById('request-cart-widget')) {
+      updateBadgeAndDropdown();
+    }
+  });
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', run);
   } else {

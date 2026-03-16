@@ -380,9 +380,40 @@ body > nav.industrial-header-light + section { padding-top: 7rem; }
 body > #site-header + script + section { padding-top: 7rem; } /* главная: каталог под шапкой */
 body > #site-header + script + .page-content { padding-top: 7rem !important; }
 body > section:last-of-type { padding-bottom: 4rem; }
+
+.page-back-wrap {
+  margin-bottom: 1.25rem;
+}
+.page-back-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 0;
+  font-size: 13px; font-weight: 600; letter-spacing: 0.02em;
+  color: #666; background: none;
+  border: none; border-radius: 0;
+  cursor: pointer;
+  transition: color 0.2s, gap 0.2s;
+}
+.page-back-btn::before {
+  content: "←";
+  font-weight: 400;
+  transition: transform 0.2s;
+}
+.page-back-btn:hover {
+  color: var(--red);
+}
+.page-back-btn:hover::before {
+  transform: translateX(-3px);
+}
+
 .page-content {
     padding-top: 7rem;
     padding-bottom: 4rem;
+    padding-left: clamp(1.5rem, 5%, 3rem);
+    padding-right: clamp(1.5rem, 5%, 3rem);
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
 }
 .main-footer { margin-top: 0; }
 
