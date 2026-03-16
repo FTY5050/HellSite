@@ -1,6 +1,6 @@
 # Карта сайта НПП «КПК»
 
-Куда ведёт какая ссылка. Пути указаны от корня сайта. *Обновлено: март 2025.*
+Куда ведёт какая ссылка. Пути от корня сайта. *Обновлено: март 2026.*
 
 ---
 
@@ -8,147 +8,82 @@
 
 | Текст / элемент | Куда ведёт |
 |-----------------|------------|
-| Логотип (картинка) | `/index.html` (главная) |
-| О ПРЕДПРИЯТИИ | `/about/index.html` |
-| НОМЕНКЛАТУРА | `/catalog/index.html` |
-| УСЛУГИ | `/services/index.html` |
-| ОБЪЕКТЫ | `/reference/index.html` |
-| ПРОИЗВОДСТВО | `/portfolio/index.html` |
-| КОНТАКТЫ | `/contacts/index.html` |
-| Телефон 8 (3854) 00-00-00 | `tel:+73854000000` (звонок) |
-| Кнопка СВЯЗАТЬСЯ | открывает модальное окно «Оставить заявку» (никуда не ведёт по ссылке) |
+| Логотип | `/index.html` (главная) |
+| О ПРЕДПРИЯТИИ | `/about/about.html` |
+| НОМЕНКЛАТУРА | `/catalog/catalog.html` |
+| УСЛУГИ | `/services/services.html` |
+| ОБЪЕКТЫ | `/reference/reference.html` |
+| ПРОИЗВОДСТВО | `/portfolio/portfolio.html` |
+| КОНТАКТЫ | `/contacts/contacts.html` |
+| Телефон | `tel:+73854000000` |
+| Кнопка СВЯЗАТЬСЯ | модальное окно «Оставить заявку» |
 
-*На страницах в подпапках скрипт `header-footer.js` подставляет относительные пути (например `../index.html`, `../catalog/index.html`).*
+На страницах в подпапках скрипт `header-footer.js` подставляет относительные пути (например `../catalog/catalog.html`).
 
 ---
 
-## Ссылки в подвале (на всех страницах)
+## Ссылки в подвале
 
 | Текст | Куда ведёт |
 |-------|------------|
-| О предприятии | `/about/index.html` |
-| Производство | `/catalog/index.html` |
-| Проекты | `/reference/index.html` |
-| Контакты | `/contacts/index.html` |
-| Паровые котлы | `/catalog/kotly/index.html` |
-| Тягодутьевые машины | `/catalog/tyagodutevye-mashiny/index.html` |
-| Водоподготовка | `/catalog/vodopodgotovka/index.html` |
-| Запчасти | `/catalog/zapchasti/index.html` |
-| Телефон | `tel:+73854000000` |
-| Email | `mailto:info@nppkpk.ru` |
+| О предприятии | `/about/about.html` |
+| Производство | `/catalog/catalog.html` |
+| Проекты | `/reference/reference.html` |
+| Контакты | `/contacts/contacts.html` |
+| Паровые котлы | `/catalog/kotly.html` |
+| Тягодутьевые машины | `/catalog/tyagodutevye-mashiny.html` |
+| Водоподготовка | `/catalog/vodopodgotovka.html` |
+| Запчасти | `/catalog/zapchasti.html` |
+| Телефон, Email | `tel:...`, `mailto:info@nppkpk.ru` |
 
 ---
 
 ## Главная страница (`/index.html`)
 
-### Блок «Номенклатура изделий» (карточки категорий)
+### Блок «Номенклатура изделий»
 
-- **Водоподготовка** → ссылки на: Деаэраторы, КДА, ОВА, Гидрозатворы, ВПУ, ФОВ, ФИПаI, ФИПаII, ФИПар, БДА, ФСУ, отдельные ФОВ-2К-… → соответствующие страницы в `catalog/vodopodgotovka/...`
-- **Паровые котлы** → Серия ДЕ, Е, ДКВр, КЕ, ДСЕ, Е 1.0-0.9 ГМ, Е 1.0-0.9Р → `catalog/kotly/...`
-- **Автоматика** → Автоматика деаэратора ДА, Автоматика паровых котлов → `catalog/avtomatika/...`
-- **Водогрейные котлы** → ПТВМ-30/50/100/120/180, КВГМ, КВТС, К-50 → `catalog/vodogrejnye-kotly/...`
-- **Экономайзеры** → ЭБ, БВЗС, 36-1-300 и др. → `catalog/ekonomajzery/...`
-- **Золоуловители** → ЗУ-1, ЗУ-2, ЗУ 1-1, 1-2, 2-1, 2-2 → `catalog/zolouloviteli/...`
-- **Воздухоподогреватели** → ВП-О-65, 85, 140, 228, 233, 300 → `catalog/vozduxopodogrevateli/...`
-- **Циклоны** → ЦБ-16 … ЦБ-56 → `catalog/cziklony/...`
-- **Тягодутьевые машины** → Вентиляторы/дымососы (вал, ходовая часть) → `catalog/tyagodutevye-mashiny/...`
-- **МКУ и ПКУ** → все три ссылки ведут на `catalog/index.html`
-- **Горелки** → ГМ, ГМП, ГМГ, отдельные модели → `catalog/gorelki/...`
-- **Запасные части** → Барабаны, Трубная система ДКВр, НРУ, Крышки лаза, Запчасти Е, ВРУ → `catalog/zapchasti/...`
+Карточки категорий ведут напрямую в подразделы каталога (без ссылки «Перейти в раздел»):
 
-### Блок «Наши услуги»
+- **Водоподготовка** → ВПУ, Холодильники отбора проб, Деаэраторы, КДА, ОВА, ФОВ, ФИПаI/II/пар, БДА, ФСУ, Сепараторы, Теплообменные аппараты, Солерастворители → `catalog/vodopodgotovka/...`
+- **Паровые котлы** → Серия Е, ДСЕ, ДЕ, КЕ, ДКВр, отдельные модели → `catalog/kotly/...`
+- **Автоматика** → `catalog/avtomatika/...`
+- **Водогрейные котлы** → `catalog/vodogrejnye-kotly/...`
+- **Экономайзеры** → `catalog/ekonomajzery/...`
+- **Золоуловители** → `catalog/zolouloviteli/...`
+- **Воздухоподогреватели** → `catalog/vozduxopodogrevateli/...`
+- **Циклоны** → `catalog/cziklony/...`
+- **Тягодутьевые машины** → `catalog/tyagodutevye-mashiny/...`
+- **МКУ и ПКУ** → Каталог МКУ, Опросный лист → `catalog/katalog-mku.html`, `catalog/oprosnyj-list/...`
+- **Горелки** → `catalog/gorelki/...`
+- **Запасные части** → `catalog/zapchasti/...`
 
-| Услуга | Ссылка «Подробнее» |
-|--------|---------------------|
-| Проектирование | `services/proektirovanie-parovyx-kotelnyx/index.html` |
-| Производство | `catalog/index.html` |
-| Демонтаж/Монтаж | `services/remont-kotlov-de/index.html` |
-| Обмуровочные работы | `services/stroitelstvo-kotelnyx-i-montazh-kotelnogo-oborudovaniya/index.html` |
-| Пуско-наладочные работы | `services/index.html` |
-| Нестандартные типы котлов | `catalog/kotly/index.html` |
+### Услуги, галерея, прочее
 
-### Блок «Фотогалерея проектов»
-
-| Карточка | Куда ведёт |
-|----------|------------|
-| Цех сборки | `reference/index.html` |
-| Монтаж ДКВр | `portfolio/kotly-dkvr/197/index.html` |
-| Паровой котел КЕ | `catalog/kotly/kotly-serii-ke/index.html` |
-| Отдел ОТК | `about/index.html` |
-| Кнопка «Посмотреть все проекты» | `reference/index.html` |
-
-### Прочее на главной
-
-- Кнопка «ЗАДАТЬ ВОПРОС ИНЖЕНЕРУ» → открывает модальное окно (не ссылка).
+- Блок «Наши услуги» — ссылки на `services/...`, `catalog/catalog.html`, `catalog/kotly.html` и т.д.
+- Галерея проектов — ссылки на reference, portfolio, catalog, about.
+- Кнопка «ЗАДАТЬ ВОПРОС ИНЖЕНЕРУ» — модальное окно.
 
 ---
 
-## Страница каталога (`/catalog/index.html`)
+## Каталог
 
-**Разделы каталога** (список ссылок):
-
-- Автоматика → `/catalog/avtomatika/index.html`
-- Циклоны → `/catalog/cziklony/index.html`
-- Экономайзеры → `/catalog/ekonomajzery/index.html`
-- ФЭЛ, щелевые колпачки → `/catalog/filtruyushhie-elementy-fel/index.html`
-- Горелки → `/catalog/gorelki/index.html`
-- Паровые котлы → `/catalog/kotly/index.html`
-- Тягодутьевые машины → `/catalog/tyagodutevye-mashiny/index.html`
-- Водогрейные котлы → `/catalog/vodogrejnye-kotly/index.html`
-- Водоподготовка → `/catalog/vodopodgotovka/index.html`
-- Воздухоподогреватели → `/catalog/vozduxopodogrevateli/index.html`
-- Запчасти → `/catalog/zapchasti/index.html`
-- Золоуловители → `/catalog/zolouloviteli/index.html`
-
-Далее на странице рендерятся карточки товаров из `#products-data`; у каждой карточки кнопки «Подробнее» (модалка) и «В корзину» (добавление в виджет корзины). Внутри каталога страницы ссылаются друг на друга через меню и контент (дерево разделов и товаров).
+- **Список разделов:** `/catalog/catalog.html` — ссылки на разделы (`vodopodgotovka.html`, `kotly.html`, `avtomatika.html` и т.д.).
+- **Страницы разделов** (например `/catalog/vodopodgotovka.html`, `/catalog/kotly.html`) — заголовок, краткий текст, список ссылок на подразделы. Пути к подразделам без дублирования: `catalog/раздел/подраздел.html`.
+- **Товары и подразделы** — дерево в `catalog/`; навигация по разделам и карточкам с кнопками «Подробнее» и «В корзину».
+- **Каталог МКУ (PDF):** `/catalog/katalog-mku.html` — просмотр и скачивание PDF (файл `БиКЗ_Каталог_МКУ_2010.pdf` должен лежать в папке `catalog/`).
 
 ---
 
-## О предприятии (`/about/index.html`)
+## О предприятии, Услуги, Объекты, Портфолио, Контакты
 
-- Текст «по контактам» → `../contacts/index.html` (относительно about)
-
----
-
-## Услуги (`/services/index.html`)
-
-- Капитальный ремонт котлов ДКВр → `remont-kotlov-dkvr/index.html`
-- Ремонт котлов ДЕ → `remont-kotlov-de/index.html`
-- Ремонт котлов КЕ → `remont-kotlov-ke/index.html`
-- Проектирование паровых котельных → `proektirovanie-parovyx-kotelnyx/index.html`
-- Переводы в водогрейный режим → `perevody-v-vodogrejnyj-rezhim/index.html`
-- Строительство котельных и монтаж → `stroitelstvo-kotelnyx-i-montazh-kotelnogo-oborudovaniya/index.html`
+- **about/** — `about/about.html`
+- **services/** — `services/services.html` и подстраницы (remont-kotlov-dkvr, proektirovanie и т.д.)
+- **reference/** — `reference/reference.html`; ссылка «Наши работы» → `portfolio/portfolio.html`
+- **portfolio/** — `portfolio/portfolio.html`, подразделы (kotly-dkvr, filtry-fov и т.д.)
+- **contacts/** — `contacts/contacts.html`
 
 ---
 
-## Объекты / референс (`/reference/index.html`)
+## Прочее
 
-- «Наши работы» (текст и кнопка) → `../portfolio/index.html`
-
----
-
-## Портфолио — Наши работы (`/portfolio/index.html`)
-
-- Котлы ДКВр → `kotly-dkvr/index.html`
-- Котлы ДСЕ → `kotly-dse/index.html`
-- Фильтры ФОВ → `filtry-fov/index.html`
-- Текст «через контакты» → `../contacts/index.html`
-
----
-
-## Контакты (`/contacts/index.html`)
-
-- Телефон → `tel:+73854000000`
-- Email → `mailto:info@nppkpk.ru`
-- Остальные ссылки — шапка и подвал (см. выше).
-
----
-
-## Разделы без отдельной карты
-
-- **zakupki/** — закупки (есть своя навигация и ссылки внутри раздела).
-- **vakancy/** — вакансии.
-- **news/** — новости (списки и страницы статей).
-- **oborudovanie-v-nalichii/**, **oprosnye-listy/**, **policy/** — разделы с внутренней структурой; навигация к ним может быть из подвала или с других страниц.
-
-Структура **catalog/** — дерево категорий и товаров (сотни страниц); полный перечень можно получить скриптом по всем `index.html` в `catalog/`.
+- **news/**, **zakupki/**, **oprosnye-listy/**, **policy/** — разделы со своей структурой; ссылки из подвала и с других страниц.
