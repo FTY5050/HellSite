@@ -509,6 +509,8 @@ body#mp-pusher #site-footer {
   z-index: 10001;
   background: rgba(26, 26, 27, 0.98);
   overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   padding: 5rem 1.5rem 2rem;
   box-sizing: border-box;
 }
