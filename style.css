@@ -125,6 +125,8 @@ h1 span { display: block; color: var(--red); }
     position: absolute; bottom: 0; left: 0; right: 0;
     padding: 30px; background: linear-gradient(transparent, rgba(0,0,0,0.8));
     color: #fff;
+    text-align: left;
+    box-sizing: border-box;
 }
 .card-overlay.blue { background: #1A3A5A; height: 100%; }
 .card-overlay.orange { background: #D35400; height: 100%; }
@@ -793,8 +795,17 @@ body#mp-pusher #site-footer {
 .prod-card:hover { border-color: #D32F2F; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
 .prod-img { height: 200px; display: flex; align-items: center; justify-content: center; padding: 20px; background: #fff; }
 .prod-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
-.prod-info { padding: 20px; border-top: 1px solid #f0f0f0; flex-grow: 1; }
-.prod-info h4 { margin: 0 0 15px 0; font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 800; text-transform: uppercase; color: #1A1A1B; }
+.prod-info {
+  padding: 20px;
+  border-top: 1px solid #f0f0f0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  box-sizing: border-box;
+}
+.prod-info h4 { margin: 0 0 15px 0; font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 800; text-transform: uppercase; color: #1A1A1B; text-align: left; }
 .prod-links { display: flex; flex-wrap: wrap; gap: 6px; }
 .prod-links a {
     text-decoration: none; font-size: 11px; font-weight: 600; color: #444;
@@ -804,12 +815,15 @@ body#mp-pusher #site-footer {
 .prod-links a:hover { background: #D32F2F; color: #fff; }
 
 /* Карточки каталога: характеристики (таблица или список с bikzg.ru) */
-.product-price { font-size: 0.9rem; color: #666; margin-bottom: 0.5rem; }
-.product-props { font-size: 0.85rem; color: #444; margin: 0.5rem 0 1rem; }
-.product-props table { width: 100%; border-collapse: collapse; }
+.product-price { font-size: 0.9rem; color: #666; margin-bottom: 0.5rem; text-align: left; width: 100%; }
+.product-props { font-size: 0.85rem; color: #444; margin: 0.5rem 0 1rem; text-align: left; width: 100%; }
+.product-props table { width: 100%; border-collapse: collapse; text-align: left; }
 .product-props td { padding: 2px 4px; vertical-align: top; }
-.product-props--list .product-props__title { display: block; font-weight: 700; margin-bottom: 0.35rem; color: #333; }
-.product-props--list ul { margin: 0; padding-left: 1.1rem; }
+.product-props--list .product-props__title { display: block; font-weight: 700; margin-bottom: 0.35rem; color: #333; text-align: left; }
+.product-props--list ul { margin: 0; padding-left: 1.1rem; text-align: left; }
+.prod-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1rem; align-self: flex-start; }
+.prod-actions .btn-details,
+.prod-actions .btn-add-to-cart { flex-shrink: 0; }
 
 /* --- 11. CTA БЛОК --- */
 .cta-industrial-full {
@@ -1422,6 +1436,8 @@ body#mp-pusher #site-footer {
     padding: 40px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.03);
     transition: 0.3s;
+    text-align: left;
+    box-sizing: border-box;
 }
 
 .contact-card-white:hover {
