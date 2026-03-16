@@ -571,8 +571,7 @@ body#mp-pusher #site-footer {
   .header-logo { flex-shrink: 1; min-width: 0; max-width: calc(100vw - 120px); overflow: hidden; }
   .nav-logo-img { max-width: 100%; height: 36px; width: auto; object-fit: contain; }
   .cart-widget-wrap { flex-shrink: 0; }
-  .nav-mobile-open .header-mobile-menu,
-body.nav-mobile-open .header-mobile-menu { display: block; }
+  .nav-mobile-open .header-mobile-menu { display: block !important; }
 }
 
 /* ----- Мобильный подвал ----- */
