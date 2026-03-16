@@ -61,7 +61,7 @@
   position: absolute;
   top: 100%;
   right: 0;
-  z-index: 1000;
+  z-index: 10002;
   width: 320px;
   max-height: 70vh;
   margin-top: 8px;
