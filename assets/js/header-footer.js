@@ -25,6 +25,10 @@
   }
   function run() {
     inject("site-header", applyBase(headerHtml));
+    var menuEl = document.getElementById("header-mobile-menu");
+    if (menuEl && menuEl.parentNode && document.body) {
+      document.body.appendChild(menuEl);
+    }
     (function initMobileMenu() {
       var nav = document.getElementById("site-nav");
       var toggle = document.getElementById("header-mobile-toggle");
