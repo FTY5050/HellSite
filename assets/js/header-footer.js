@@ -25,6 +25,9 @@
   }
   function run() {
     inject("site-header", applyBase(headerHtml));
+    try {
+      document.dispatchEvent(new CustomEvent("nppkpk-header-ready"));
+    } catch (e) {}
     inject("site-footer", applyBase(footerHtml));
     if (typeof document !== "undefined") {
       if (!document.getElementById("contact-modal")) {

@@ -377,6 +377,7 @@ h1 span { display: block; color: var(--red); }
 
 /* Отступы контента от шапки и подвала на всех страницах */
 body > nav.industrial-header-light + section { padding-top: 7rem; }
+body > #site-header + script + section { padding-top: 7rem; } /* главная: каталог под шапкой */
 body > #site-header + script + .page-content { padding-top: 7rem !important; }
 body > section:last-of-type { padding-bottom: 4rem; }
 .page-content {

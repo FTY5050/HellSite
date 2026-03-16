@@ -71,7 +71,7 @@
       cart.forEach(function (item) {
         var q = item.quantity || 1;
         var titleDisplay = q > 1 ? escapeHtml(item.title) + ' <span class="cart-widget__qty">× ' + q + '</span>' : escapeHtml(item.title);
-        listHtml += '<li class="cart-widget__item" data-id="' + item.id + '">';
+        listHtml += '<li class="cart-widget__item" data-id="' + escapeAttr(item.id) + '">';
         listHtml += '<span class="cart-widget__item-title">' + titleDisplay + '</span>';
         listHtml += '<button type="button" class="cart-widget__remove" aria-label="Удалить">×</button>';
         listHtml += '</li>';
@@ -102,6 +102,16 @@
     return div.innerHTML;
   }
 
+  function escapeAttr(s) {
+    if (s == null) return '';
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
   function updateBadgeAndDropdown() {
     var widget = document.getElementById('request-cart-widget');
     if (!widget) return;
@@ -118,7 +128,7 @@
         cart.forEach(function (item) {
           var q = item.quantity || 1;
           var titleDisplay = q > 1 ? escapeHtml(item.title) + ' <span class="cart-widget__qty">× ' + q + '</span>' : escapeHtml(item.title);
-          listHtml += '<li class="cart-widget__item" data-id="' + item.id + '">';
+          listHtml += '<li class="cart-widget__item" data-id="' + escapeAttr(item.id) + '">';
           listHtml += '<span class="cart-widget__item-title">' + titleDisplay + '</span>';
           listHtml += '<button type="button" class="cart-widget__remove" aria-label="Удалить">×</button>';
           listHtml += '</li>';
@@ -228,7 +238,10 @@
     bindDropdownEvents(widget);
   }
 
+  var addToCartBound = false;
   function initAddToCartButtons() {
+    if (addToCartBound) return;
+    addToCartBound = true;
     document.body.addEventListener('click', function (e) {
       var btn = e.target.closest('.btn-add-to-cart');
       if (!btn) return;
@@ -266,10 +279,19 @@
   }
 
   function run() {
-    initWidget();
+    if (!document.getElementById('request-cart-widget')) initWidget();
     initAddToCartButtons();
     clearCartOnSubmit();
   }
+
+  document.addEventListener('nppkpk-header-ready', function () {
+    if (!document.getElementById('request-cart-widget')) {
+      initWidget();
+      initAddToCartButtons();
+    } else {
+      updateBadgeAndDropdown();
+    }
+  });
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', run);
