@@ -36,11 +36,13 @@
       if (!nav || !toggle || !menu) return;
       function open() {
         nav.classList.add("nav-mobile-open");
+        document.body.classList.add("nav-mobile-open");
         menu.setAttribute("aria-hidden", "false");
         document.body.style.overflow = "hidden";
       }
       function close() {
         nav.classList.remove("nav-mobile-open");
+        document.body.classList.remove("nav-mobile-open");
         menu.setAttribute("aria-hidden", "true");
         document.body.style.overflow = "";
       }
